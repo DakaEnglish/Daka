@@ -4,7 +4,7 @@
   <open-data type="userNickName" />
   <text > 请由此授权登录</text>
  </view>
- <button hidden='{{hiddenButton}}' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+ <button hidden='{{hiddenButton}}' wx:if="{{canIUse}}" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
   <text >点此授权登录</text>
  </button>
 </view>

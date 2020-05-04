@@ -1,0 +1,7 @@
+<!--miniprogram/pages/signup/signup.wxml-->
+输入电话
+<input class='input' bindinput='getNum'></input>
+其他信息
+<input class='input' bindinput='otherthing'></input>
+<button bindtap='signup' type='primary'> 注册 </button>
+

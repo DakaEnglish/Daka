@@ -4,13 +4,20 @@ App({
   globalData:{
     userid: '',
     userInfo: null,
+    nikeName: '',
+    appid:'wx0a865091a610fc72',
+    secret:'30be707fde9568d6624dbd43d79f9f5c',
     auth: {
       'scope.userInfo': false //用户授权状态
     },
     logged: false //登录状态
   },
+  
   onLaunch: function () {
-    
+    wx.cloud.init({
+      env:"courseselect-pyznx",
+      traceUser:true
+    })
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
     } else {

@@ -1,15 +1,77 @@
 const app = getApp();
+const db = wx.cloud.database();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    hiddenButton: true
+    hiddenButton: true,
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    openid:''
   },
+  onLoad: function() {
+    // 查看是否授权
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+              userInfo = res.userInfo
+              console.log(res.userInfo)
+            }
+          })
+        }
+      }
+    })
+  },
+  onLuanch(){
+    this.getopenId()
+    },
+    // 定义调用云函数获取openid
+    getOpenId(){
+      let page = this;
+      wx.cloud.callFunction({
+        name:'getOpenId',
+        complete:res=>{
+          console.log('openid--',res.result)
+          var openid = res.result.openid
+          page.setData({
+            openid:openid
+          })
+        }
+      })
+    },
   onGotUserInfo: function(e){
+    console.log(e.detail.userInfo)
+    app.globalData.nickName = e.detail.userInfo.nickName
+    db.collection('user').where({
+      userid: this.openid
+    }).get({
+      success: function(res) {
+        let user = res.data[0]
+        if(res.data.length!=0){
+          console.log(user.nickName)
+          console.log('登陆成功')
+          wx.showToast({
+            title: '登陆成功',
+          })
+          wx.switchTab({
+            url: '/pages/course/course',
+          })
+          wx.setStorageSync('user', user)
+        }
+        else{
+          console.log("未注册")
+          wx.navigateTo({
+            url: '../signup/signup',
+          })
+        }
+      }
+    })
+    /*
     var _this = this
-    if (e.detail.errMsg == "getUserInfo:ok"){
       app.globalData.auth['scope.userInfo'] = true
       wx.cloud.callFunction({
         name: 'get_setUserInfo',
@@ -30,6 +92,9 @@ Page({
             else {
               //未成功，进入注册环节
               console.log("未注册")
+              wx.navigateTo({
+                url: '../signup/signup',
+              })
               _this.register({
                 nickName: e.detail.userInfo.nickName,
                 gender: e.detail.userInfo.gender,
@@ -47,10 +112,8 @@ Page({
           console.error("get_setUserInfo调用失败",err.errMsg)
         }
       })
-    }
-    else
-     console.log("未授权")
   },
+  
   //注册阶段
   register: function(e) {
     let _this = this
@@ -89,11 +152,11 @@ Page({
           duration: 800,
           icon: 'none'
         })
-        console.error("get_setUserInfo调用失败",err.errMsg)
+        //console.error("get_setUserInfo调用失败",err.errMsg)
       }
     })
+    */
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -135,7 +198,7 @@ Page({
                 duration: 800,
                 icon: 'none'
               })
-              console.error("get_setUserInfo调用失败",err.errMsg)
+              //console.error("get_setUserInfo调用失败",err.errMsg)
             }
           })
         }
