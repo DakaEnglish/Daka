@@ -8,66 +8,52 @@ Page({
   data: {
     hiddenButton: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    openid:''
+    openid: '',
+    userInfo: null
   },
-  onLoad: function() {
-    // 查看是否授权
-    wx.getSetting({
-      success (res){
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
-          wx.getUserInfo({
-            success: function(res) {
-              userInfo = res.userInfo
-              console.log(res.userInfo)
-            }
-          })
-        }
+  // 定义调用云函数获取openid
+  getUserid() {
+    let page = this;
+    wx.cloud.callFunction({
+      name: 'getUserid',
+      complete: res => {
+        console.log('openid--', res.result.openId)
+        this.openid = res.result.openId
       }
     })
   },
-  onLuanch(){
-    this.getopenId()
-    },
-    // 定义调用云函数获取openid
-    getOpenId(){
-      let page = this;
-      wx.cloud.callFunction({
-        name:'getOpenId',
-        complete:res=>{
-          console.log('openid--',res.result)
-          var openid = res.result.openid
-          page.setData({
-            openid:openid
-          })
-        }
-      })
-    },
-  onGotUserInfo: function(e){
-    console.log(e.detail.userInfo)
-    app.globalData.nickName = e.detail.userInfo.nickName
-    db.collection('user').where({
-      userid: this.openid
-    }).get({
-      success: function(res) {
-        let user = res.data[0]
-        if(res.data.length!=0){
-          console.log(user.nickName)
-          console.log('登陆成功')
-          wx.showToast({
-            title: '登陆成功',
-          })
-          wx.switchTab({
-            url: '/pages/course/course',
-          })
-          wx.setStorageSync('user', user)
-        }
-        else{
-          console.log("未注册")
-          wx.navigateTo({
-            url: '../signup/signup',
-          })
-        }
+  onGotUserInfo: function (e) {
+    wx.cloud.callFunction({
+      name: 'getUserid',
+      complete: res => {
+        console.log('openid--', res.result.openId)
+        this.openid = res.result.openId
+        //console.log(e.detail.userInfo)
+        app.globalData.nickName = e.detail.userInfo.nickName
+        console.log(this.openid)
+        db.collection('user').where({
+          _openid: this.openid
+        }).get({
+          success: function (res) {
+            var user = res.data[0]
+            if (res.data.length != 0) {
+              console.log(user.nickName)
+              console.log('登陆成功')
+              wx.showToast({
+                title: '登陆成功',
+              })
+              wx.navigateTo({
+                url: '/pages/course/course',
+              })
+              wx.setStorageSync('user', user)
+            } else {
+              console.log("未注册")
+              wx.navigateTo({
+                url: '../signup/signup',
+              })
+            }
+          }
+        })
       }
     })
     /*
@@ -164,16 +150,16 @@ Page({
     let _this = this
     //需要用户同意授权
     wx.getSetting({
-      success: function(res) {
-        if (res.authSetting['scope.userInfo']){
-          app.globalData.auth['scope.userInfo'] = true//将授权结果写入app.js里的全局变量
+      success: function (res) {
+        if (res.authSetting['scope.userInfo']) {
+          app.globalData.auth['scope.userInfo'] = true //将授权结果写入app.js里的全局变量
           wx.cloud.callFunction({
             name: 'get_setUserInfo',
             data: {
               getSelf: true
             },
             success: res => {
-              if(res.errMsg == "cloud.callFunction:ok" && res.result){
+              if (res.errMsg == "cloud.callFunction:ok" && res.result) {
                 //如果成功获取到，将用户资料写入app.js的全局变量
                 console.log(res)
                 app.globalData.userInfo = res.result.data.userData
@@ -181,8 +167,7 @@ Page({
                 wx.switchTab({
                   url: '/pages/course'
                 })
-              }
-              else{
+              } else {
                 _this.setData({
                   hiddenButton: false
                 })
@@ -201,8 +186,7 @@ Page({
               //console.error("get_setUserInfo调用失败",err.errMsg)
             }
           })
-        }
-        else{
+        } else {
           _this.setData({
             hiddenButton: false
           })
@@ -213,7 +197,7 @@ Page({
         _this.setData({
           hiddenButton: false
         })
-        console.error("wx.getSetting调用失败",err.errMsg)
+        console.error("wx.getSetting调用失败", err.errMsg)
       }
     })
   }
