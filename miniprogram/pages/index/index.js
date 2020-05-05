@@ -11,24 +11,14 @@ Page({
     openid: '',
     userInfo: null
   },
-  // 定义调用云函数获取openid
-  getUserid() {
-    let page = this;
-    wx.cloud.callFunction({
-      name: 'getUserid',
-      complete: res => {
-        console.log('openid--', res.result.openId)
-        this.openid = res.result.openId
-      }
-    })
-  },
+  
   onGotUserInfo: function (e) {
+    // 定义调用云函数获取openid
     wx.cloud.callFunction({
       name: 'getUserid',
       complete: res => {
-        console.log('openid--', res.result.openId)
-        this.openid = res.result.openId
-        //console.log(e.detail.userInfo)
+        console.log('openid--', res.result.openid)
+        this.openid = res.result.openid
         app.globalData.nickName = e.detail.userInfo.nickName
         console.log(this.openid)
         db.collection('user').where({
@@ -41,10 +31,12 @@ Page({
               console.log('登陆成功')
               wx.showToast({
                 title: '登陆成功',
+                duration: 800,
+                icon: 'none'
               })
-              wx.navigateTo({
-                url: '/pages/course/course',
-              })
+              wx.switchTab({
+                url: '../first/first',
+              }) 
               wx.setStorageSync('user', user)
             } else {
               console.log("未注册")
@@ -179,9 +171,6 @@ Page({
                 hiddenButton: false
               })
               wx.showToast({
-                title: '注册失败，请检查您的网络状态',
-                duration: 800,
-                icon: 'none'
               })
               //console.error("get_setUserInfo调用失败",err.errMsg)
             }
