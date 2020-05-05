@@ -1,0 +1,6 @@
+<!--pages/select/select.wxml-->
+<view wx:for="{{teacherlist}}">
+  <image src='{{item.photoadd}}'> </image>
+  {{item.text}}
+  <button>选课</button>
+</view>
