@@ -54,9 +54,9 @@ Page({
         wx.showToast({
           title: '注册成功',
         })
-        wx.navigateTo({
-          url: '../course/course',
-        })
+        wx.switchTab({
+          url: '../first/first',
+        }) 
       },
       fail(res) {
         console.log('注册失败', res)
