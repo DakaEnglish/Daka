@@ -11,7 +11,7 @@ App({
   },
   onLaunch: function () {
     wx.cloud.init({
-      env:"wx0a865091a610fc72",	//云服务器环境id
+      env:"courseselect-pyznx",	//云服务器环境id
       traceUser:true
     })
   }

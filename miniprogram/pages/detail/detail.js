@@ -1,28 +1,19 @@
-// pages/select/select.js
+// pages/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    teacherList:[],
-    name: [1,2,3]
+    teacher:{}
   },
 
-  gotoPage: function(event){
-    let num = event.currentTarget.dataset.num;   //num为teacherList数组的index
-    let that = this
-    //通过缓存的方式传输数据
-    try {
-      wx.setStorageSync('teacher',this.data.teacherList[num])
-      console.log("缓存成功") 
-    } catch (e) {
-        console.log("缓存失败")
-     }
-  
-    //跳转页面
-    wx.navigateTo({
-      url: '/pages/detail/detail'
+  /*！！！重要！！！！点击按钮时，实现跳转到zyh页面的功能
+  （应该还要实现传参到zyh的页面，数据已经在缓存里了，打开调试器“storage”可见数据）
+  （缓存已经存好，不用再次存入缓存了，跳转到新的页面直接取出就好）*/
+  toSelectTime:function(){    //再点击“选课”按钮时执行这个方法
+    wx.navigateTo({           //跳转到页面
+      url: ''           //跳转到的页面地址
     })
   },
 
@@ -30,19 +21,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this
-    //从数据库teacheer里读取教师信息
-    wx.cloud.database().collection("teacher").get({
-      success(res){
-        console.log("请求成功",res)
+    var that = this
+    try {
+      var value = wx.getStorageSync('teacher')    //将缓存的信息取出
+      if (value) {
+        // Do something with return value
+        console.log("传输成功",value)
         that.setData({
-          teacherList : res.data
+          teacher : value
         })
-      },
-      fail(res){
-        console.log("请求失败",res)
       }
-    })
+    } catch (e) {
+      // Do something when catch error
+      console.log("传输失败",value)
+    }
   },
 
   /**
