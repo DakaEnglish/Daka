@@ -1,6 +1,6 @@
 <!--pages/select/select.wxml-->
 
-<view wx:for="{{teacherList}}">
+<view wx:for="{{teacherList}}" wx:key="key">
   <image src="{{item.imag}}"></image>
   <view>{{item.name}}</view>
   <view>{{item.info}}</view>

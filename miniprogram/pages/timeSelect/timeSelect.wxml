@@ -1,0 +1,33 @@
+<view>
+    <view>
+        <text>请选择您想上课的时间</text>
+    </view>
+    <view>
+        <view >
+            <radio-group class="radio-group" bindchange="radioChange">
+                <radio class="radio" wx:key="0" value="0" disabled="{{dis0}}">
+                    <text>8：00至10：00</text>
+                </radio>
+                <radio class="radio" wx:key="1" value="1" disabled="{{dis1}}">
+                    <text>10：00至12：00</text>
+                </radio>
+                <radio class="radio" wx:key="2" value="2" disabled="{{dis2}}">
+                    <text>12：00至14：00</text>
+                </radio>
+                <radio class="radio" wx:key="3" value="3" disabled="{{dis3}}">
+                    <text>14：00至16：00</text>
+                </radio>
+                <radio class="radio" wx:key="4" value="4" disabled="{{dis4}}">
+                    <text>16：00至18：00</text>
+                </radio>
+                <radio class="radio" wx:key="5" value="5" disabled="{{dis5}}">
+                    <text>18：00至20：00</text>
+                </radio>
+                <radio class="radio" wx:key="6" value="6" disabled="{{dis6}}">
+                    <text>20：00至22：00</text>
+                </radio>
+            </radio-group>
+            <button bindtap="toSetTimeTable">提交</button>  
+        </view>
+    </view>
+</view>

@@ -5,16 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    teacher:{}
+    teacher: {},
+    dis:false
   },
 
   /*！！！重要！！！！点击按钮时，实现跳转到zyh页面的功能
   （应该还要实现传参到zyh的页面，数据已经在缓存里了，打开调试器“storage”可见数据）
   （缓存已经存好，不用再次存入缓存了，跳转到新的页面直接取出就好）*/
-  toSelectTime:function(){    //再点击“选课”按钮时执行这个方法
-    wx.navigateTo({           //跳转到页面
-      url: ''           //跳转到的页面地址
+  toSelectTime: function () { //再点击“选课”按钮时执行这个方法、
+    var flag = 1
+    for (var i = 0; i < 7; i++) {
+      if (this.teacher.freetime[i] == 1) {
+        flag = 0;
+      }
+    }
+    if (flag) {
+      console.log('老师时间已满')
+      this.dis = true
+      wx.showToast({
+        title: '该老师时间已预约满，请更换教师',
+        duration: 800,
+        icon: 'none'
+      })
+    }
+    else{
+    wx.navigateTo({ //跳转到页面
+      url: '../timeSelect/timeSelect' //跳转到的页面地址
     })
+  }
   },
 
   /**
@@ -23,18 +41,36 @@ Page({
   onLoad: function (options) {
     var that = this
     try {
-      var value = wx.getStorageSync('teacher')    //将缓存的信息取出
+      var value = wx.getStorageSync('teacher') //将缓存的信息取出
+      var flag = 1 //判断是否有时间
       if (value) {
         // Do something with return value
-        console.log("传输成功",value)
+        console.log("传输成功", value)
         that.setData({
-          teacher : value
+          teacher: value
         })
+        this.teacher = value
+        console.log("teacher", this.teacher.freetime)
+        for (var i = 0; i < 7; i++) {
+          if (this.teacher.freetime[i] == 1) {
+            flag = 0;
+          }
+        }
+        if (flag) {
+          console.log('老师时间已满')
+          this.dis = true
+          wx.showToast({
+            title: '该老师时间已预约满，请更换教师',
+            duration: 800,
+            icon: 'none'
+          })
+        }
       }
     } catch (e) {
       // Do something when catch error
-      console.log("传输失败",value)
+      console.log("传输失败", value)
     }
+
   },
 
   /**

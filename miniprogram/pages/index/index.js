@@ -35,7 +35,7 @@ Page({
                 icon: 'none'
               })
               wx.switchTab({
-                url: '../first/first',
+                url: '../select/select',
               }) 
               wx.setStorageSync('user', user)
             } else {

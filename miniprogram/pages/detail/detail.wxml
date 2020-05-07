@@ -1,9 +1,9 @@
 <!--pages/detail/detail.wxml-->
 <view>Name :{{teacher.name}}</view>
-<button bindtap="toSelectTime">选课</button>  <!--点击这个按钮将跳转到zyh的页面-->
+<button bindtap="toSelectTime" disabled="{{dis}}">选课</button>  <!--点击这个按钮将跳转到zyh的页面-->
 <video src="{{teacher.video}}"></video>
 <view>{{teacher.info}}</view>
-<view wx:for="{{teacher.certificate}}">
+<view wx:for="{{teacher.certificate}}" wx:key="key">
   <image src="{{item}}"></image>
 </view>
 
