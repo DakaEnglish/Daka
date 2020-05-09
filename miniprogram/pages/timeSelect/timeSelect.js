@@ -24,34 +24,8 @@ Page({
         dis: 0
       },
     ],
-    items: [{
-        name: '8-10',
-        value: '8:00至10：00'
-      },
-      {
-        name: '10-12',
-        value: '10：00至12：00'
-      },
-      {
-        name: '12-14',
-        value: '12：00至14：00'
-      },
-      {
-        name: '14-16',
-        value: '14：00至16：00'
-      },
-      {
-        name: '16-18',
-        value: '16：00至18：00'
-      },
-      {
-        name: '18-20',
-        value: '18：00至20：00'
-      },
-      {
-        name: '20-22',
-        value: '20：00至22：00'
-      },
+    items: [
+
     ],
     dis0: false,
     dis1: false,
@@ -89,47 +63,77 @@ Page({
           for (var i = 0; i < 7; i++) {
             time_list1[i].dis = freetime[i]
           }
-          if (time_list1[0].dis != 1) {
-            this.setData({
-              dis0: true
-            })
+          var items = that.data.items
+          if (time_list1[0].dis == 1) {
+            console.log("in the if")
+            var item = {
+              name: '8-10',
+              value: '8：00至10：00',
+              num: 0
+            }
+            items.push(item)
+            that.setData({items});
           }
-          if (time_list1[1].dis != 1) {
-            this.setData({
-              dis1: true
-            })
+          if (time_list1[1].dis == 1) {
+            var item = {
+              name: '10-12',
+              value: '10：00至12：00',
+              num: 1
+            }
+            items.push(item)
+            that.setData({items});
           }
-          if (time_list1[2].dis != 1) {
-            this.setData({
-              dis2: true
-            })
+          if (time_list1[2].dis == 1) {
+            var item = {
+              name: '12-14',
+              value: '12：00至14：00',
+              num: 2
+            }
+            items.push(item)
+            that.setData({items});
           }
-          if (time_list1[3].dis != 1) {
-            this.setData({
-              dis3: true
-            })
+          if (time_list1[3].dis == 1) {
+            var item = {
+              name: '14-16',
+              value: '14：00至16：00',
+              num: 3
+            }
+            items.push(item)
+            that.setData({items});
           }
-          if (time_list1[4].dis != 1) {
-            this.setData({
-              dis4: true
-            })
+          if (time_list1[4].dis == 1) {
+            var item = {
+              name: '16-18',
+              value: '16：00至18：00',
+              num: 4
+            }
+            items.push(item)
+            that.setData({items});
           }
-          if (time_list1[5].dis != 1) {
-            this.setData({
-              dis5: true
-            })
+          if (time_list1[5].dis == 1) {
+            var item = {
+              name: '18-20',
+              value: '18：00至20：00',
+              num: 5
+            }
+            items.push(item)
+            that.setData({items});
           }
-          if (time_list1[6].dis != 1) {
-            this.setData({
-              dis6: true
-            })
+          if (time_list1[6].dis == 1) {
+            var item = {
+              name: '20-22',
+              value: '20：00至22：00',
+              num: 6
+            }
+            items.push(item)
+            that.setData({items});
           }
+          console.log("1",this.data.items)
         }
       })
 
   },
   toSetTimeTable: function () {
-    var time = parseInt(this.radio)
     db.collection('teacher').where({
         _id: this.teacher._id
       })
