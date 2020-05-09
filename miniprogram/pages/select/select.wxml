@@ -44,7 +44,7 @@
   <image src="{{item.imag}}"></image>
   <view>{{item.name}}</view>
   <view>{{item.info}}</view>
-  <button bindtap="gotoPage" data-num="{{index}}">查看</button>
+  <button class="weui-btn weui-btn_default" bindtap="gotoPage" data-num="{{index}}">查看</button>
 </view>
 
 <view class="fadeIn {{hideLoading ? 'fadeOut' : ''}}" wx:if="{{loading}}">

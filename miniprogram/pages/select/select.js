@@ -55,10 +55,10 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面初次渲染完成
    */
-  onLoad: function (options) {
-    let that = this
+  onReady: function () {
+    //loading图标
     this.setData({
       loading: true
     });
@@ -73,7 +73,14 @@ Page({
           });
       }, 200);
     }, 1000);
-    //从数据库teacheer里读取教师信息
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function (options) {
+    let that = this
+    //从数据库singer里读取信息
     wx.cloud.database().collection("teacher").get({
       success(res){
         console.log("请求成功",res)
@@ -89,20 +96,6 @@ Page({
         console.log("请求失败",res)
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
   },
 
   /**

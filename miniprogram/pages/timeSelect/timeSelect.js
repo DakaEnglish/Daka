@@ -134,6 +134,7 @@ Page({
 
   },
   toSetTimeTable: function () {
+    var time = this.radio
     db.collection('teacher').where({
         _id: this.teacher._id
       })
@@ -141,15 +142,17 @@ Page({
         success: res => {
           console.log(res.data)
           var freeTime = res.data[0].freetime
+          var teacherinfo = res.data
           if (freeTime[time] == 1) {
             freeTime[time] = 2
             console.log(freeTime)
-            //！主要问题在这里，无法将课程信息同步到数据库
+            var _id = res.data[0]._id
             wx.cloud.callFunction({
               // 云函数名称
               name: 'updateTeacherFreetime',
               data: {
-                'freetime': 'freeTime'
+                _id: _id,
+                freetime: freeTime
               },
               success(res) {
                 console.log("调用成功")
