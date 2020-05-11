@@ -75,6 +75,13 @@
 					"id": -1,
 					"name": "pages/detail/detail",
 					"pathName": "pages/detail/detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/timeSelect/timeSelect",
+					"pathName": "pages/timeSelect/timeSelect",
 					"scene": null
 				}
 			]

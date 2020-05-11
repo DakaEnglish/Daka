@@ -85,51 +85,26 @@ Page({
         success: res => {
           console.log(res.data)
           var freetime = res.data[0].freetime
-          console.log(freetime)
           for (var i = 0; i < 7; i++) {
             time_list1[i].dis = freetime[i]
           }
-          if (time_list1[0].dis != 1) {
-            this.setData({
-              dis0: true
-            })
+
+          for (var j = 0 ; j < 7 ; j++){
+            if(time_list1[j].dis != 1){
+              this.setData({
+                dis0: true
+              })
+            }
           }
-          if (time_list1[1].dis != 1) {
-            this.setData({
-              dis1: true
-            })
-          }
-          if (time_list1[2].dis != 1) {
-            this.setData({
-              dis2: true
-            })
-          }
-          if (time_list1[3].dis != 1) {
-            this.setData({
-              dis3: true
-            })
-          }
-          if (time_list1[4].dis != 1) {
-            this.setData({
-              dis4: true
-            })
-          }
-          if (time_list1[5].dis != 1) {
-            this.setData({
-              dis5: true
-            })
-          }
-          if (time_list1[6].dis != 1) {
-            this.setData({
-              dis6: true
-            })
-          }
+          
         }
       })
 
   },
   toSetTimeTable: function () {
+    console.log("!!!!!",this.radio)
     var time = parseInt(this.radio)
+    console.log("!!!!!####",this.teacher._id)
     db.collection('teacher').where({
         _id: this.teacher._id
       })
