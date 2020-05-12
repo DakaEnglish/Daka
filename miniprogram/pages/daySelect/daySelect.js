@@ -105,7 +105,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     var that = this
     try {
       var value = wx.getStorageSync('teacher') //将缓存的信息取出
@@ -127,16 +127,19 @@ Page({
     var upisfree;
     var upweek;
     for(var i = 0 ; i < 14 ; i++ ){
-      uplable =  "freedayTable[" + i + "].lable";
       upisfree =  "freedayTable[" + i + "].isfree";
       that.setData({
-        [uplable]:this.teacher.freetimeTable[i][0],
-        [upisfree]:this.teacher.freetimeTable[i][1],
+        [upisfree]:this.teacher.freetimeTable[i][1]
       })
     }
-    console.log("%%%%%lable:",this.data.freedayTable[4].lable);
-    console.log("%%%%%%isfree:",this.data.freedayTable[4].isfree);
-    console.log("%%%%%toweek:",this.data.freedayTable[4].week);
+    var date = new Date();
+    for(var i = 0; i < date.getDay(); i ++){
+      this.data.freedayTable[i].lable = 0
+    }
+    console.log("%%%%today:",date.getDay());
+    console.log("%%%%%lable:",this.data.freedayTable[1].lable);
+    console.log("%%%%%%isfree:",this.data.freedayTable[1].isfree);
+    console.log("%%%%%toweek:",this.data.freedayTable[1].week);
   },
 
   /**
@@ -146,12 +149,7 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
+  
 
   /**
    * 生命周期函数--监听页面隐藏

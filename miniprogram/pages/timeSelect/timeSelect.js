@@ -1,9 +1,10 @@
 const db = wx.cloud.database()
 const time = db.collection('teacher')
+const app = getApp()
 Page({
   data: {
-    datenum:0,
-    week:"",
+    datenum: 0,
+    week: "",
     time_list: [{
         dis: 0
       },
@@ -39,12 +40,13 @@ Page({
     teacher: {}
   },
   onLoad: function (option) {
-    this.setData({                  //读取daySelect中传入的参数
-      datenum:option.datenum,
-      week:option.week
+    console.log(app.globalData.userid)
+    this.setData({ //读取daySelect中传入的参数
+      datenum: option.datenum,
+      week: option.week
     })
-    console.log("~~~~~data.information.date",this.data.datenum);
-    console.log("~~~~~data.information.week",this.data.week);
+    console.log("~~~~~data.information.date", this.data.datenum);
+    console.log("~~~~~data.information.week", this.data.week);
     var that = this
     try {
       var value = wx.getStorageSync('teacher') //将缓存的信息取出
@@ -66,22 +68,23 @@ Page({
       .get({
         success: res => {
           console.log(res.data)
-          var freetime = res.data[0].freetime
-          for (var i = 0; i < 7; i++) {
-            time_list1[i].dis = freetime[i]
+          var freetime = res.data[0].freetimeTable[this.data.datenum]
+          console.log(freetime)
+          for (var i = 2; i < 9; i++) {
+            time_list1[i - 2].dis = parseInt(freetime[i])
           }
-
-
           var items = that.data.items
           if (time_list1[0].dis == 1) {
-            console.log("in the if")
+            //console.log("in the if")
             var item = {
               name: '8-10',
               value: '8：00至10：00',
               num: 0
             }
             items.push(item)
-            that.setData({items});
+            that.setData({
+              items
+            });
           }
           if (time_list1[1].dis == 1) {
             var item = {
@@ -90,7 +93,9 @@ Page({
               num: 1
             }
             items.push(item)
-            that.setData({items});
+            that.setData({
+              items
+            });
           }
           if (time_list1[2].dis == 1) {
             var item = {
@@ -99,7 +104,9 @@ Page({
               num: 2
             }
             items.push(item)
-            that.setData({items});
+            that.setData({
+              items
+            });
           }
           if (time_list1[3].dis == 1) {
             var item = {
@@ -108,7 +115,9 @@ Page({
               num: 3
             }
             items.push(item)
-            that.setData({items});
+            that.setData({
+              items
+            });
           }
           if (time_list1[4].dis == 1) {
             var item = {
@@ -117,7 +126,9 @@ Page({
               num: 4
             }
             items.push(item)
-            that.setData({items});
+            that.setData({
+              items
+            });
           }
           if (time_list1[5].dis == 1) {
             var item = {
@@ -126,7 +137,9 @@ Page({
               num: 5
             }
             items.push(item)
-            that.setData({items});
+            that.setData({
+              items
+            });
           }
           if (time_list1[6].dis == 1) {
             var item = {
@@ -135,30 +148,44 @@ Page({
               num: 6
             }
             items.push(item)
-            that.setData({items});
+            that.setData({
+              items
+            });
           }
-          console.log("1",this.data.items)
+          console.log("1", this.data.items)
 
         }
       })
 
   },
   toSetTimeTable: function () {
-
-    var time = this.radio
-
+    var that = this
+    var time = parseInt(this.radio)
+    time += 2
     db.collection('teacher').where({
         _id: this.teacher._id
       })
       .get({
         success: res => {
-          console.log(res.data)
-          var freeTime = res.data[0].freetime
-          var teacherinfo = res.data
-          if (freeTime[time] == 1) {
-            freeTime[time] = 2
+          var freeTime = res.data[0].freetimeTable
+          console.log(time)
+          if (parseInt(freeTime[this.data.datenum][time]) == 1) {
+            wx.switchTab({ //跳转到页面
+              url: '../my/my' //跳转到的页面地址
+            })
+            console.log(app.globalData.userid)
+            freeTime[this.data.datenum][time] = app.globalData.userid
             console.log(freeTime)
             var _id = res.data[0]._id
+            var flag = 1
+            for (var i = 2; i < 9; i++) {
+              if (freeTime[this.data.datenum][i] == 1) {
+                flag = 0
+              }
+            }
+            if (flag == 1) {
+              freeTime[this.data.datenum][1] = 0
+            }
             wx.cloud.callFunction({
               // 云函数名称
               name: 'updateTeacherFreetime',
@@ -173,11 +200,8 @@ Page({
                   duration: 800,
                   icon: 'none'
                 })
-                wx.switchTab({ //跳转到页面
-                  url: '../my/my' //跳转到的页面地址
-                })
               },
-              fail(res){
+              fail(res) {
                 console.log("调用失败")
               }
             })

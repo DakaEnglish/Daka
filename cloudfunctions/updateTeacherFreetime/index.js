@@ -14,7 +14,7 @@ exports.main = async (event, context) => {
       _id: event._id
   }).update({
     data:{
-      freetime: event.freetime
+      'freetimeTable': event.freetime
     }
   })
 }

@@ -6,7 +6,7 @@
   <button bindtap="gotoTimeSelect" data-num="{{index}}">
     <view>{{item.week}}</view>
     <view wx:if="{{item.lable==0}}">已过期</view>
-    <view wx:elif="{{item.isfree==0}}">已满</view>
+    <view wx:if="{{item.isfree==0}}">已满</view>
   </button>
 </view>
 
