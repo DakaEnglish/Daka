@@ -133,6 +133,7 @@ Page({
       })
     }
     var date = new Date();
+    console.log(date)
     for(var i = 0; i < date.getDay(); i ++){
       this.data.freedayTable[i].lable = 0
     }

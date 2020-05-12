@@ -1,6 +1,7 @@
 const db = wx.cloud.database()
 const time = db.collection('teacher')
 const app = getApp()
+const _ = db.command
 Page({
   data: {
     datenum: 0,
@@ -173,7 +174,6 @@ Page({
             wx.switchTab({ //跳转到页面
               url: '../my/my' //跳转到的页面地址
             })
-            console.log(app.globalData.userid)
             freeTime[this.data.datenum][time] = app.globalData.userid
             console.log(freeTime)
             var _id = res.data[0]._id
@@ -205,14 +205,65 @@ Page({
                 console.log("调用失败")
               }
             })
+            //设置时间信息完成
+            var date = dateLater(0)
+            console.log(date)
+            var nu = that.data.datenum - date.week
+            console.log(nu)
+            date = dateLater(nu)
+            console.log(date)
+            var courseInfo = {
+              teacherid: res.data[0]._id, //存储老师id
+              dateInfo: date, //保存具体日期
+              time: this.radio, //保存具体时间，0代表8-10点以此类推
+            }
+            console.log(courseInfo)
+            //上传到服务器失败
+            wx.cloud.callFunction({
+              // 云函数名称
+              name: 'addCourseInfo',
+              data: {
+                openid: app.globalData.userid,
+                courseInfo: courseInfo
+              },
+              success: function (res) {
+                console.log("数据存入user")
+              }
+            })
+          } else {
+            wx.showToast({
+              title: '手慢，课被抢了！请重新选择',
+              duration: 800,
+              icon: 'none'
+            })
           }
+
         }
       })
 
 
   },
+
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     this.radio = e.detail.value
   }
 })
+
+/**
+ * 传入时间后几天
+ * param：传入时间：dates:当前时间,later:往后多少天
+ */
+function dateLater(later) {
+  let dateObj = {};
+  let show_day = new Array(6, 0, 1, 2, 3, 4, 5); //0-周一
+  let date = new Date();
+  date.setDate(date.getDate() + later);
+  let day = date.getDay();
+  console.log(day)
+  dateObj.year = date.getFullYear();
+  dateObj.month = date.getMonth() + 1;
+  dateObj.day = date.getDate();
+  dateObj.week = show_day[day];
+  return dateObj;
+}

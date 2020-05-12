@@ -47,7 +47,8 @@ Page({
       data: {
         nickName: app.globalData.nickName,
         num: num,
-        other: other
+        other: other,
+        course: []
       },
       success(res) {
         console.log('注册成功', res)
