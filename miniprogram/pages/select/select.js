@@ -6,13 +6,18 @@ Page({
    */
   data: {
     teacherList:[],
-    name: [1,2,3]
+    name: [1,2,3],
+    inputShowed: false,
+    inputVal: "",
+    loading: false,
+    hideLoading: false,
   },
 
   gotoPage: function(event){
-    let num = event.currentTarget.dataset.num;   //num为teacherList数组的index
-    let that = this
+    var num = event.currentTarget.dataset.num;   //num为teacherList数组的index
+    var that = this
     //通过缓存的方式传输数据
+
     try {
       wx.setStorageSync('teacher',this.data.teacherList[num])
       console.log("缓存成功") 
@@ -26,37 +31,72 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    let that = this
-    //从数据库teacheer里读取教师信息
-    wx.cloud.database().collection("teacher").get({
-      success(res){
-        console.log("请求成功",res)
-        that.setData({
-          teacherList : res.data
-        })
-      },
-      fail(res){
-        console.log("请求失败",res)
-      }
-    })
+  //搜索功能
+  //能看不能用orz
+  showInput: function () {
+    this.setData({
+        inputShowed: true
+    });
+  },
+  hideInput: function () {
+    this.setData({
+        inputVal: "",
+        inputShowed: false
+    });
+  },
+  clearInput: function () {
+    this.setData({
+        inputVal: ""
+    });
+  },
+  inputTyping: function (e) {
+    this.setData({
+        inputVal: e.detail.value
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //loading图标
+    this.setData({
+      loading: true
+    });
+    setTimeout(() => {
+      this.setData({
+          hideLoading: true
+      });
+      setTimeout(() => {
+          this.setData({
+              loading: false,
+              hideLoading: false,
+          });
+      }, 200);
+    }, 1000);
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (options) {
+    let that = this
+    //从数据库singer里读取信息
+    wx.cloud.database().collection("teacher").get({
+      success(res){
+        console.log("请求成功",res)
+        that.setData({
+          teacherList : res.data
+        })
+        this.setData({
+          loading: false,
+          hideLoading: true
+        });
+      },
+      fail(res){
+        console.log("请求失败",res)
+      }
+    })
   },
 
   /**

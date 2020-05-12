@@ -12,6 +12,8 @@
 
 ​	detail：老师的具体介绍（文字、视频、奖状等）
 
+2020.5.12 实现选课--日历
+
 ## 参考文档
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)

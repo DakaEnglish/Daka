@@ -1,0 +1,13 @@
+<!--pages/daySelect/daySelect.wxml-->
+<image src="{{image}}"></image>
+<view>{{name}}</view>
+
+<view wx:for="{{freedayTable}}">
+  <button bindtap="gotoTimeSelect" data-num="{{index}}">
+    <view>{{item.week}}</view>
+    <view wx:if="{{item.lable==0}}">已过期</view>
+    <view wx:elif="{{item.isfree==0}}">已满</view>
+  </button>
+</view>
+
+

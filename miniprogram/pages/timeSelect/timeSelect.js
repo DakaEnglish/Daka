@@ -2,6 +2,8 @@ const db = wx.cloud.database()
 const time = db.collection('teacher')
 Page({
   data: {
+    datenum:0,
+    week:"",
     time_list: [{
         dis: 0
       },
@@ -24,34 +26,8 @@ Page({
         dis: 0
       },
     ],
-    items: [{
-        name: '8-10',
-        value: '8:00至10：00'
-      },
-      {
-        name: '10-12',
-        value: '10：00至12：00'
-      },
-      {
-        name: '12-14',
-        value: '12：00至14：00'
-      },
-      {
-        name: '14-16',
-        value: '14：00至16：00'
-      },
-      {
-        name: '16-18',
-        value: '16：00至18：00'
-      },
-      {
-        name: '18-20',
-        value: '18：00至20：00'
-      },
-      {
-        name: '20-22',
-        value: '20：00至22：00'
-      },
+    items: [
+
     ],
     dis0: false,
     dis1: false,
@@ -62,7 +38,13 @@ Page({
     dis6: false,
     teacher: {}
   },
-  onLoad: function (options) {
+  onLoad: function (option) {
+    this.setData({                  //读取daySelect中传入的参数
+      datenum:option.datenum,
+      week:option.week
+    })
+    console.log("~~~~~data.information.date",this.data.datenum);
+    console.log("~~~~~data.information.week",this.data.week);
     var that = this
     try {
       var value = wx.getStorageSync('teacher') //将缓存的信息取出
@@ -89,22 +71,82 @@ Page({
             time_list1[i].dis = freetime[i]
           }
 
-          for (var j = 0 ; j < 7 ; j++){
-            if(time_list1[j].dis != 1){
-              this.setData({
-                dis0: true
-              })
+
+          var items = that.data.items
+          if (time_list1[0].dis == 1) {
+            console.log("in the if")
+            var item = {
+              name: '8-10',
+              value: '8：00至10：00',
+              num: 0
             }
+            items.push(item)
+            that.setData({items});
           }
-          
+          if (time_list1[1].dis == 1) {
+            var item = {
+              name: '10-12',
+              value: '10：00至12：00',
+              num: 1
+            }
+            items.push(item)
+            that.setData({items});
+          }
+          if (time_list1[2].dis == 1) {
+            var item = {
+              name: '12-14',
+              value: '12：00至14：00',
+              num: 2
+            }
+            items.push(item)
+            that.setData({items});
+          }
+          if (time_list1[3].dis == 1) {
+            var item = {
+              name: '14-16',
+              value: '14：00至16：00',
+              num: 3
+            }
+            items.push(item)
+            that.setData({items});
+          }
+          if (time_list1[4].dis == 1) {
+            var item = {
+              name: '16-18',
+              value: '16：00至18：00',
+              num: 4
+            }
+            items.push(item)
+            that.setData({items});
+          }
+          if (time_list1[5].dis == 1) {
+            var item = {
+              name: '18-20',
+              value: '18：00至20：00',
+              num: 5
+            }
+            items.push(item)
+            that.setData({items});
+          }
+          if (time_list1[6].dis == 1) {
+            var item = {
+              name: '20-22',
+              value: '20：00至22：00',
+              num: 6
+            }
+            items.push(item)
+            that.setData({items});
+          }
+          console.log("1",this.data.items)
+
         }
       })
 
   },
   toSetTimeTable: function () {
-    console.log("!!!!!",this.radio)
-    var time = parseInt(this.radio)
-    console.log("!!!!!####",this.teacher._id)
+
+    var time = this.radio
+
     db.collection('teacher').where({
         _id: this.teacher._id
       })
@@ -112,15 +154,17 @@ Page({
         success: res => {
           console.log(res.data)
           var freeTime = res.data[0].freetime
+          var teacherinfo = res.data
           if (freeTime[time] == 1) {
             freeTime[time] = 2
             console.log(freeTime)
-            //！主要问题在这里，无法将课程信息同步到数据库
+            var _id = res.data[0]._id
             wx.cloud.callFunction({
               // 云函数名称
               name: 'updateTeacherFreetime',
               data: {
-                'freetime': 'freeTime'
+                _id: _id,
+                freetime: freeTime
               },
               success(res) {
                 console.log("调用成功")

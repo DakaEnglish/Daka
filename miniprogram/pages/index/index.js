@@ -31,8 +31,8 @@ Page({
               console.log('登陆成功')
               wx.showToast({
                 title: '登陆成功',
-                duration: 800,
-                icon: 'none'
+                duration: 0,
+                icon: 'success'
               })
               wx.switchTab({
                 url: '../select/select',
@@ -169,8 +169,6 @@ Page({
             fail: err => {
               _this.setData({
                 hiddenButton: false
-              })
-              wx.showToast({
               })
               //console.error("get_setUserInfo调用失败",err.errMsg)
             }
