@@ -97,6 +97,20 @@
 					"id": -1,
 					"name": "pages/select/select",
 					"pathName": "pages/select/select",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/timeSelect/timeSelect",
+					"pathName": "pages/timeSelect/timeSelect",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/course/course",
+					"pathName": "pages/course/course",
 					"scene": null
 				}
 			]

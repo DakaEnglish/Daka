@@ -1,2 +1,12 @@
 <!--miniprogram/pages/course/course.wxml-->
-<text>miniprogram/pages/course/course.wxml</text>
+<view wx:for="{{courseList}}">
+  <view>
+    <block>{{item.dateInfo.year}}年</block>
+    <block>{{item.dateInfo.month}}月</block>
+    <block>{{item.dateInfo.day}}日</block>
+  </view>
+  <view>{{item.week}}</view>
+  <view>{{item.time}}</view>
+  <view>{{item.teacherid}}</view>
+  <view> </view>
+</view>

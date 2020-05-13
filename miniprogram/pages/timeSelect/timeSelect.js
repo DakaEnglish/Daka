@@ -174,8 +174,9 @@ Page({
             wx.switchTab({ //跳转到页面
               url: '../my/my' //跳转到的页面地址
             })
+
             freeTime[this.data.datenum][time] = app.globalData.userid
-            console.log(freeTime)
+            console.log("freetime:",freeTime)
             var _id = res.data[0]._id
             var flag = 1
             for (var i = 2; i < 9; i++) {
@@ -197,7 +198,7 @@ Page({
                 console.log("调用成功")
                 wx.showToast({
                   title: '预约成功',
-                  duration: 800,
+                  duration: 2000,
                   icon: 'none'
                 })
               },
@@ -233,7 +234,7 @@ Page({
           } else {
             wx.showToast({
               title: '手慢，课被抢了！请重新选择',
-              duration: 800,
+              duration: 1500,
               icon: 'none'
             })
           }

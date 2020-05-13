@@ -14,6 +14,8 @@
 
 2020.5.12 实现选课--日历
 
+2020.5.13 课表页面半成（未完成的部分：通过教师id将教师姓名和图片加载到页面）
+
 ## 参考文档
 
 - [云开发文档](https://developers.weixin.qq.com/miniprogram/dev/wxcloud/basis/getting-started.html)
