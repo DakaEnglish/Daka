@@ -26,13 +26,33 @@ Page({
         console.log("******",course)
 
         for( var i = 0 ; course[i] != null ; i++ ){
+          console.log("iiii=",i)
           var week = course[i].dateInfo.week
           var toweek = that.changeweek(week)
           var time = course[i].time
           var totime = that.changetime(time)
+          var teacherid = course[i].teacherid
+          console.log("teacherid",teacherid)
+          db.collection('teacher').where({
+            _id:teacherid
+          })
+          .get({
+            success: res_1=>{
+              var name = res_1.data[0].name
+              var image = res_1.data[0].imag
+              console.log("name",name)
+              console.log("image",image)
+              console.log("i=",i)
+              that.setData({
+                ['courseList[' + i + '].teachername']:name,
+                ['courseList[' + i + '].teacherimage']:image
+              })
+              console.log("**name:",)
+            }
+          }),
+          //console.log("!!!!!!!!!!!",toweek)
+          //console.log("!!!!!!!!!!!",totime)
 
-          console.log("!!!!!!!!!!!",toweek)
-          console.log("!!!!!!!!!!!",totime)
           that.setData({
             ['courseList['+i+'].dateInfo']:course[i].dateInfo,
             ['courseList['+i+'].teacherid']:course[i].teacherid,

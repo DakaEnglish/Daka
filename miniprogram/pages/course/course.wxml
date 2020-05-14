@@ -1,5 +1,7 @@
 <!--miniprogram/pages/course/course.wxml-->
 <view wx:for="{{courseList}}">
+  <view>教师：{{item.teachername}}</view>
+  <view>{{item.teacherimage}}</view>
   <view>
     <block>{{item.dateInfo.year}}年</block>
     <block>{{item.dateInfo.month}}月</block>
