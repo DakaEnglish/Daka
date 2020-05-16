@@ -217,6 +217,7 @@ Page({
               teacherid: res.data[0]._id, //存储老师id
               dateInfo: date, //保存具体日期
               time: this.radio, //保存具体时间，0代表8-10点以此类推
+              compareInfo: date.year + '' + date.month + '' + date.day + '' + this.radio
             }
             console.log(courseInfo)
             //上传到服务器失败
