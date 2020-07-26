@@ -8,23 +8,32 @@ Page({
   data: {
     courseList: []
   },
-
+  compare: function (property) {
+    return function (a, b) {
+      var value1 = a[property];
+      var value2 = b[property];
+      return value1 - value2;
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onShow: function (options) {
     var id = app.globalData.userid
     console.log("userid:", id)
 
     var that = this
     db.collection('user').where({
         _openid: id
-      })
+      }).orderBy('course.dateInfo.month', 'asc')
+      .orderBy('course.dateInfo.day', 'asc')
+      .orderBy('course.time', 'asc')
       .get({
         success: res => {
           var course = res.data[0].course
           console.log("******", course)
-
+          course.sort(that.compare("compareInfo"));
+          console.log("sorted:", course)
           for (var i = 0; course[i] != null; i++) {
             (function (i) {
               //console.log("iiii=", i)
