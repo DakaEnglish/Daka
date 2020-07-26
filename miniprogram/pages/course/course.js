@@ -27,13 +27,13 @@ Page({
 
           for (var i = 0; course[i] != null; i++) {
             (function (i) {
-              console.log("iiii=", i)
+              //console.log("iiii=", i)
               var week = course[i].dateInfo.week
               var toweek = that.changeweek(week)
               var time = course[i].time
               var totime = that.changetime(time)
               var teacherid = course[i].teacherid
-              console.log("teacherid", teacherid)
+              //console.log("teacherid", teacherid)
               db.collection('teacher').where({
                   _id: teacherid
                 })

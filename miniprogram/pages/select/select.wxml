@@ -40,17 +40,36 @@
 	</view>
 </view>
 
-<view wx:for="{{teacherList}}" wx:key="key">
-  <image src="{{item.imag}}"></image>
-  <view>{{item.name}}</view>
-  <view>{{item.info}}</view>
-  <button class="weui-btn weui-btn_default" bindtap="gotoPage" data-num="{{index}}">查看</button>
+<!--list-->
+<view class="nav_section">
+	<block wx:for="{{teacherList}}" wx:key="key">
+		<view class="nav_section_items" >
+			<!--image-->
+			<view class="section_image">
+				<image src="{{item.imag}}"></image>
+			</view>
+			<!--content-->
+			<view class="section_cont">
+				<view class="section_cont_price">
+					<view>{{item.name}}</view>
+				</view>
+				<view class="section_cont">
+					<view>{{item.info}}</view>
+				</view>
+			</view>
+			<!--check-->
+			<view class="section_book" bindtap="gotoPage" data-num="{{index}}">
+				<text>查看</text>
+			</view>
+		</view>
+	</block>
 </view>
 
+<!--加载-->
 <view class="fadeIn {{hideLoading ? 'fadeOut' : ''}}" wx:if="{{loading}}">
 		<view class="weui-mask_transparent"></view>
 		<view class="weui-toast">
 			<i class="weui-loading weui-icon_toast"></i>
 			<view class="weui-toast__content">数据加载中</view>
 		</view>
-	</view>
+</view>

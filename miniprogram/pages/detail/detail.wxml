@@ -1,9 +1,21 @@
-<!--pages/detail/detail.wxml-->
-<view>Name :{{teacher.name}}</view>
-<button class="weui-btn weui-btn_default" bindtap="toSelectTime" disabled="{{dis}}">选课</button>  <!--点击这个按钮将跳转到zyh的页面-->
-<video src="{{teacher.video}}"></video>
-<view>{{teacher.info}}</view>
-<view wx:for="{{teacher.certificate}}" wx:key="key">
-  <image src="{{item}}"></image>
+<view class="container">
+  <view class="image">
+    <video src="{{teacher.video}}"></video>
+  </view>
+
+  <button class="ar_book" bindtap="toSelectTime" disabled="{{dis}}">选 课</button>
+
+  <view class="ar_cont">
+    <view class="ar_cont_h1">教师</view>
+    <view class="ar_cont_price">{{teacher.name}}</view>
+    <view class="ar_line"></view>
+    <view class="ar_cont_h1">详情描述</view>
+    <view class="ar_cont_price">{{teacher.info}}</view>
+    <view class="ar_line"></view>
+    <view class="ar_cont_h1">证书</view>
+    <view wx:for="{{teacher.certificate}}" wx:key="key">
+      <image src="{{item}}"></image>
+    </view>
+  </view>
 </view>
 
