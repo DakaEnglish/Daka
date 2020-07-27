@@ -120,8 +120,6 @@ Page({
       name:this.teacher.name,
       image:this.teacher.imag
     })
-    console.log("!!!!!!name",this.data.name)
-    console.log("!!!!!!image",this.data.image)
 
     var uplable;
     var upisfree;

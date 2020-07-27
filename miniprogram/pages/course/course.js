@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    courseList: []
+    courseList: null,
+    todayEmpty: 0,
+    otherTimeEmpty: 0
   },
   compare: function (property) {
     return function (a, b) {
@@ -20,7 +22,7 @@ Page({
    */
   onShow: function (options) {
     var id = app.globalData.userid
-    console.log("userid:", id)
+    //console.log("userid:", id)
 
     var that = this
     db.collection('user').where({
@@ -31,9 +33,13 @@ Page({
       .get({
         success: res => {
           var course = res.data[0].course
-          console.log("******", course)
+          //console.log("******", course)
           course.sort(that.compare("compareInfo"));
-          console.log("sorted:", course)
+          //console.log("sorted:", course)
+          var date = new Date()
+          var month = date.getMonth()
+          var day = date.getDate()
+          console.log(month, day)
           for (var i = 0; course[i] != null; i++) {
             (function (i) {
               //console.log("iiii=", i)
@@ -42,33 +48,43 @@ Page({
               var time = course[i].time
               var totime = that.changetime(time)
               var teacherid = course[i].teacherid
-              //console.log("teacherid", teacherid)
-              db.collection('teacher').where({
-                  _id: teacherid
+              //console.log("Date:", time,date.Data)
+              if (course[i].dateInfo.day == day && course[i].dateInfo.month == month + 1) {
+                that.setData({ 
+                  todayEmpty: 1,
+                  ['courseList[' + i + '].type']: 1
                 })
-                .get({
-                  success: res_1 => {
-                    var name = res_1.data[0].name
-                    var image = res_1.data[0].imag
-                    console.log("name", name)
-                    console.log("image", image)
-                    console.log("i=", i)
-                    that.setData({
-                      ['courseList[' + i + '].teachername']: name,
-                      ['courseList[' + i + '].teacherimage']: image
-                    })
-                    console.log("**name:", )
-                  }
-                }),
-                //console.log("!!!!!!!!!!!",toweek)
-                //console.log("!!!!!!!!!!!",totime)
+                console.log(that.data.todayEmpty)
+              } else {
+                that.setData({ 
+                  otherTimeEmpty: 1,
+                  ['courseList[' + i + '].type']: 2
+                })
+              }
+                db.collection('teacher').where({
+                    _id: teacherid
+                  })
+                  .get({
+                    success: res_1 => {
+                      var name = res_1.data[0].name
+                      var image = res_1.data[0].imag
+                      console.log("month",course[i].dateInfo.month,"i=",i)
+                      that.setData({
+                        ['courseList[' + i + '].teachername']: name,
+                        ['courseList[' + i + '].teacherimage']: image
+                      })
+                      //console.log("**name:", that.data.courseList)
+                    }
+                  }),
+                  //console.log("!!!!!!!!!!!",toweek)
+                  //console.log("!!!!!!!!!!!",totime)
 
-                that.setData({
-                  ['courseList[' + i + '].dateInfo']: course[i].dateInfo,
-                  ['courseList[' + i + '].teacherid']: course[i].teacherid,
-                  ['courseList[' + i + '].week']: toweek,
-                  ['courseList[' + i + '].time']: totime
-                })
+                  that.setData({
+                    ['courseList[' + i + '].dateInfo']: course[i].dateInfo,
+                    ['courseList[' + i + '].teacherid']: course[i].teacherid,
+                    ['courseList[' + i + '].week']: toweek,
+                    ['courseList[' + i + '].time']: totime
+                  })
             })(i);
           }
         }

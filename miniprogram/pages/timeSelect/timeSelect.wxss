@@ -6,3 +6,6 @@
   border-top: 1px solid #ddd;
   padding: 5px;
 }
+.publish::after {
+  border: 0;
+}
