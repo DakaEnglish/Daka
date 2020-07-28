@@ -22,12 +22,6 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/first/first",
-        "text": "首页",
-        "iconPath": "icons/首页.png",
-        "selectedIconPath": "icons/首页_1.png"
-      },
-      {
         "pagePath": "pages/course/course",
         "text": "课表",
         "iconPath": "icons/list.png",
@@ -38,12 +32,6 @@
         "text": "选课",
         "iconPath": "icons/search.png",
         "selectedIconPath": "icons/search_1.png"
-      },
-      {
-        "pagePath": "pages/my/my",
-        "text": "我的",
-        "iconPath": "icons/user.png",
-        "selectedIconPath": "icons/user_1.png"
       }
     ]
   },

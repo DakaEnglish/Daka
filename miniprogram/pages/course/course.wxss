@@ -1,4 +1,3 @@
-/* pages/select/select.wxss *//* miniprogram/pages/course/course.wxss */
 .nav_section{
   width:100%;
 }
@@ -10,12 +9,41 @@
   border-bottom:2rpx solid #ddd;
   position: relative;
 }
+.nav_section_title{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding:30rpx;
+  position: relative;
+}
+.nav_section_title .title_background{
+  border-bottom:none;
+  background-color:#FFC125;
+  border-radius:5%;
+  width: 100%;
+  height: 70rpx;
+  color: #fff;
+  font-size:40rpx ;
+  text-align: center;
+  padding-top: 10rpx;
+}
+
+.noclass{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left:30rpx;
+  position: relative;
+  font-size: 35rpx;
+  color:#a9a9a9;
+}
+
 .nav_section_items:active{
   background:#ddd;
 }
 .nav_section_items .section_image{
-  width:170rpx;
-  height:158rpx;
+  width:190rpx;
+  height:180rpx;
 }
 .nav_section_items .section_image image{
   width:100%;
@@ -60,4 +88,11 @@
   color:#fff;
   text-align: center;
   margin-top:35rpx;
+}
+
+.ar_line{
+  width:100%;
+  height:0rpx;
+  content: '';
+  margin:30rpx 0rpx;
 }

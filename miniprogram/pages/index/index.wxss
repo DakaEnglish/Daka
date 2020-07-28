@@ -151,3 +151,17 @@ page {
   line-height: 36rpx;
   word-break: break-all;
 }
+
+.ar_line{
+  width:100%;
+  height:0rpx;
+  content: '';
+  margin:100rpx 0rpx;
+}
+
+.ar_line_small{
+  width:100%;
+  height:0rpx;
+  content: '';
+  margin:15rpx 0rpx;
+}

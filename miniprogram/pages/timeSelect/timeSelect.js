@@ -172,7 +172,7 @@ Page({
           console.log(time)
           if (parseInt(freeTime[this.data.datenum][time]) == 1) {
             wx.switchTab({ //跳转到页面
-              url: '../my/my' //跳转到的页面地址
+              url: '../course/course' //跳转到的页面地址
             })
 
             freeTime[this.data.datenum][time] = app.globalData.userid

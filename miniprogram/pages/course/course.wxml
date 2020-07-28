@@ -1,43 +1,73 @@
 <!--miniprogram/pages/course/course.wxml-->
-<view>今日课程</view>
+<view class="nav_section_title">
+	<view class="title_background">今 日 课 程 </view>
+</view>
+
 <view wx:if="{{ todayEmpty === 1 }}">
 	<view class="nav_section">
 		<block wx:for="{{courseList}}" wx:key="key">
-    <view wx:if="{{item.type === 1}}">
-			<view>教师：{{item.teachername}}</view>
-			<image src="{{item.teacherimage}}"></image>
-			<view>
-				<block>{{item.dateInfo.year}}年</block>
-				<block>{{item.dateInfo.month}}月</block>
-				<block>{{item.dateInfo.day}}日</block>
+    <view wx:if="{{item.type === 1}}" class="nav_section_items">
+		<!--image-->
+			<view class="section_image">
+				<image src="{{item.teacherimage}}"></image>
 			</view>
-			<view>{{item.week}}</view>
-			<view>{{item.time}}</view>
-			 </view>
+			<!--content-->
+			<view class="section_cont">
+				<view class="section_cont_sub">
+					<view>教师：</view>
+				</view>
+				<view class="section_cont_price">
+					<view>{{item.teachername}}</view>
+				</view>
+				<view>
+					<block>{{item.dateInfo.year}}/</block>
+					<block>{{item.dateInfo.month}}/</block>
+					<block>{{item.dateInfo.day}}</block>
+				</view>
+				<view>{{item.week}}</view>
+				<view>{{item.time}}</view>
+			</view>
+
+			</view>
 		</block>
 	</view>
 </view>
-<view wx:elif="{{todayEmpty === 0}}">
-    您没有课程
-  </view>
-<view>预约课程</view>
+<view wx:elif="{{todayEmpty === 0}}" class="noclass">
+    您今日没有课程
+</view>
+
+<text class="ar_line"> </text>
+
+<view class="nav_section_title">
+	<view class="title_background">预 约 课 程</view>
+</view>
 <view wx:if="{{ otherTimeEmpty === 1}}">
 	<view class="nav_section">
 		<block wx:for="{{courseList}}" wx:key="key">
-		<block wx:if="{{item.type === 2}}">
-			<view>教师：{{item.teachername}}</view>
-			<image src="{{item.teacherimage}}"></image>
-			<view>
-				<block>{{item.dateInfo.year}}年</block>
-				<block>{{item.dateInfo.month}}月</block>
-				<block>{{item.dateInfo.day}}日</block>
+		<view wx:if="{{item.type === 2}}" class="nav_section_items">
+			<!--image-->
+			<view class="section_image">
+				<image src="{{item.teacherimage}}"></image>
 			</view>
-			<view>{{item.week}}</view>
-			<view>{{item.time}}</view>
-			</block>
+			<!--content-->
+			<view class="section_cont">
+				<view  class="section_cont_sub">
+					<text>教师：</text>
+					<text class="section_cont_price">{{item.teachername}}</text>
+				</view>
+
+				<view>
+					<block>{{item.dateInfo.year}} / </block>
+					<block>{{item.dateInfo.month}} / </block>
+					<block>{{item.dateInfo.day}}</block>
+				</view>
+				<view>{{item.week}}</view>
+				<view>{{item.time}}</view>
+			</view>
+		</view>
 		</block>
 	</view>
 </view>
-<view wx:elif="{{otherTimeEmpty === 0}}">
+<view wx:elif="{{otherTimeEmpty === 0}}" class="noclass">
     您没有课程
-  </view>
+</view>

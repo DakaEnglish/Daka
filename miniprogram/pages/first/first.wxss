@@ -1,1 +1,6 @@
-/* miniprogram/pages/first/first.wxss */
+.ar_line{
+  width:100%;
+  height:0rpx;
+  content: '';
+  margin:200rpx 0rpx;
+}
