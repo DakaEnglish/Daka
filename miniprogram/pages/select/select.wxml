@@ -1,4 +1,5 @@
 <!--pages/select/select.wxml-->
+<!-- search didn't work for now>
 <view class="page" data-weui-theme="{{theme}}">
 	<view class="page__bd">
 		<view class="weui-search-bar {{inputShowed ? 'weui-search-bar_focusing' : ''}}" id="searchBar">
@@ -39,7 +40,7 @@
 		</view>
 	</view>
 </view>
-
+<-->
 <!--list-->
 <view class="nav_section">
 	<block wx:for="{{teacherList}}" wx:key="key">

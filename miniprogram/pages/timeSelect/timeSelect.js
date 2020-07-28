@@ -171,10 +171,6 @@ Page({
           var freeTime = res.data[0].freetimeTable
           console.log(time)
           if (parseInt(freeTime[this.data.datenum][time]) == 1) {
-            wx.switchTab({ //跳转到页面
-              url: '../course/course' //跳转到的页面地址
-            })
-
             freeTime[this.data.datenum][time] = app.globalData.userid
             console.log("freetime:",freeTime)
             var _id = res.data[0]._id
@@ -200,6 +196,9 @@ Page({
                   title: '预约成功',
                   duration: 2000,
                   icon: 'none'
+                })
+                wx.switchTab({ //跳转到页面
+                  url: '../course/course' //跳转到的页面地址
                 })
               },
               fail(res) {
