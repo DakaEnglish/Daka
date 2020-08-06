@@ -39,7 +39,7 @@ Page({
           var date = new Date()
           var month = date.getMonth()
           var day = date.getDate()
-          console.log(month, day)
+          //console.log(month, day)
           for (var i = 0; course[i] != null; i++) {
             (function (i) {
               //console.log("iiii=", i)
@@ -48,13 +48,18 @@ Page({
               var time = course[i].time
               var totime = that.changetime(time)
               var teacherid = course[i].teacherid
-              //console.log("Date:", time,date.Data)
-              if (course[i].dateInfo.day == day && course[i].dateInfo.month == month + 1) {
+              //console.log("Date:", course[i].dateInfo)
+              if(course[i].dateInfo.month < month + 1 || course[i].dateInfo.day < day && course[i].dateInfo.month == month + 1) {
+                that.setData({ 
+                  ['courseList[' + i + '].type']: 0
+                })
+              }
+              else if (course[i].dateInfo.day == day && course[i].dateInfo.month == month + 1) {
                 that.setData({ 
                   todayEmpty: 1,
                   ['courseList[' + i + '].type']: 1
                 })
-                console.log(that.data.todayEmpty)
+                //console.log(that.data.todayEmpty)
               } else {
                 that.setData({ 
                   otherTimeEmpty: 1,
@@ -68,7 +73,7 @@ Page({
                     success: res_1 => {
                       var name = res_1.data[0].name
                       var image = res_1.data[0].imag
-                      console.log("month",course[i].dateInfo.month,"i=",i)
+                      //console.log("month",course[i].dateInfo.month,"i=",i)
                       that.setData({
                         ['courseList[' + i + '].teachername']: name,
                         ['courseList[' + i + '].teacherimage']: image

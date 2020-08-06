@@ -21,7 +21,7 @@ Page({
         this.openid = res.result.openid
         app.globalData.nickName = e.detail.userInfo.nickName
         app.globalData.userid = res.result.openid
-        console.log(app.globalData.userid)
+        //console.log(app.globalData.userid)
         db.collection('user').where({
           _openid: this.openid
         }).get({
