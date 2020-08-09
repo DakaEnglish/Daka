@@ -1,0 +1,6 @@
+<!--miniprogram/pages/choosepage/choosepage.wxml-->
+<view class="weui-form__opr-area">
+			<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="gotoSelect">选课界面</a>
+      <a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="gotoMaster">管理员界面</a>
+      <a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="gotoTeacher">教师界面</a>
+		</view>

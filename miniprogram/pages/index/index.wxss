@@ -165,3 +165,9 @@ page {
   content: '';
   margin:15rpx 0rpx;
 }
+
+.studty_ft{
+  width: 100%;
+  padding: 5rpx 0;
+  text-align: center;
+}

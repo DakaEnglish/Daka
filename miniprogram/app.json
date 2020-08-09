@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/index/index",
     "pages/course/course",
     "pages/signup/signup",
@@ -10,7 +9,11 @@
     "pages/select/select",
     "pages/updatearray/updatearray",
     "pages/first/first",
-    "pages/daySelect/daySelect"
+    "pages/daySelect/daySelect",
+    "pages/choosepage/choosepage",
+    "pages/teacher/teacher",
+    "pages/master/master",
+    "pages/master/changeCourse"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -4,6 +4,7 @@ const app = getApp()
 const _ = db.command
 Page({
   data: {
+    date: '2016-09-01',
     datenum: 0,
     week: "",
     time_list: [{

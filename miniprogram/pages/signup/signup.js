@@ -7,14 +7,14 @@ Page({
   },
   //获取电话
   getNum(event) {
-    console.log('获取输入的电话', event.detail.value)
+    //console.log('获取输入的电话', event.detail.value)
     this.setData({
       num: event.detail.value
     })
   },
   //获取其他信息
   otherthing(event) {
-    console.log('获取输入的其他信息', event.detail.value)
+    //console.log('获取输入的其他信息', event.detail.value)
     this.setData({
       other: event.detail.value
     })
@@ -48,7 +48,8 @@ Page({
         nickName: app.globalData.nickName,
         num: num,
         other: other,
-        course: []
+        course: [],
+        courseTimes: 0
       },
       success(res) {
         console.log('注册成功', res)

@@ -22,7 +22,7 @@ Page({
    */
   onShow: function (options) {
     var id = app.globalData.userid
-    //console.log("userid:", id)
+    console.log("userid:", id)
 
     var that = this
     db.collection('user').where({
