@@ -11,7 +11,7 @@
 	},
 	"appid": "wx0a865091a610fc72",
 	"projectname": "Daka",
-	"libVersion": "2.8.1",
+	"libVersion": "2.12.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",

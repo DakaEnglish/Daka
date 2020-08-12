@@ -6,6 +6,7 @@
     "pages/detail/detail",
     "pages/timeSelect/timeSelect",
     "pages/my/my",
+    "pages/demo/ui-calendar",
     "pages/select/select",
     "pages/updatearray/updatearray",
     "pages/first/first",

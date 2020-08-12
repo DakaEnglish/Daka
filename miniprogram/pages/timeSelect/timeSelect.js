@@ -4,51 +4,36 @@ const app = getApp()
 const _ = db.command
 Page({
   data: {
-    date: '2016-09-01',
-    datenum: 0,
-    week: "",
-    time_list: [{
-        dis: 0
-      },
-      {
-        dis: 0
-      },
-      {
-        dis: 0
-      },
-      {
-        dis: 0
-      },
-      {
-        dis: 0
-      },
-      {
-        dis: 0
-      },
-      {
-        dis: 0
-      },
-    ],
-    items: [
+    isShow: false,
+    listData:[['男', '女'],['已婚','未婚'],['在职','离职']],
+    picker_data:[],
 
-    ],
-    dis0: false,
-    dis1: false,
-    dis2: false,
-    dis3: false,
-    dis4: false,
-    dis5: false,
-    dis6: false,
-    teacher: {}
   },
-  onLoad: function (option) {
-    console.log(app.globalData.userid)
-    this.setData({ //读取daySelect中传入的参数
-      datenum: option.datenum,
-      week: option.week
+
+  showPicker: function () {
+    this.setData({
+      isShow: true
     })
-    console.log("~~~~~data.information.date", this.data.datenum);
-    console.log("~~~~~data.information.week", this.data.week);
+  },
+  sureCallBack (e) {
+    let data = e.detail
+    this.setData({
+      isShow: false,
+      picker_data: e.detail.choosedData,
+      picker_index:JSON.stringify(e.detail.choosedIndexArr)
+    })
+  },
+  cancleCallBack () {
+    this.setData({
+      isShow: false,
+    })
+  },
+
+  onLoad: function (option) {
+      this.setData({
+        isShow: true
+      })
+    console.log(app.globalData.userid)
     var that = this
     try {
       var value = wx.getStorageSync('teacher') //将缓存的信息取出

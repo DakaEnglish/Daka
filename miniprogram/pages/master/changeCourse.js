@@ -60,7 +60,7 @@ Page({
       },
       success: res => {
         wx.showToast({
-          title: '登录成功',
+          title: '成功',
           icon: 'success',
           duration: 2000,
           success: function () {

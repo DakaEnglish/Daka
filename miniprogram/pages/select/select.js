@@ -17,7 +17,7 @@ Page({
     var num = event.currentTarget.dataset.num;   //num为teacherList数组的index
     var that = this
     //通过缓存的方式传输数据
-
+    
     try {
       wx.setStorageSync('teacher',this.data.teacherList[num])
       console.log("缓存成功") 

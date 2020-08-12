@@ -12,6 +12,7 @@ Page({
 
   toSelectTime: function () { //再点击“选课”按钮时执行这个方法、
     console.log("toSelectTime flag:",this.data.flag)
+    /*
     if (this.data.flag) {
       console.log('老师时间已满')
       this.dis = true
@@ -22,10 +23,11 @@ Page({
       })
     }
     else{
+      */
       wx.navigateTo({ //跳转到页面
-        url: '../daySelect/daySelect' //跳转到的页面地址
+        url: '../demo/ui-calendar' //跳转到的页面地址
       })
-  }
+  
   },
 
   /**
@@ -44,11 +46,10 @@ Page({
     } catch (e) {
       console.log("传输失败", value)
     }
-
+    /*
     this.teacher = value
-    console.log("teacherrrrrrrrrrrrrrrr", this.teacher.freetimeTable)
     for (var i = 0; i < 14; i++) {
-      if (this.teacher.freetimeTable[i][0] == 1 && this.teacher.freetimeTable[i][1] == 1) { //未过期且有可选
+      if (this.teacher.freetime[i][0] == 1 && this.teacher.freetime[i][1] == 1) { //未过期且有可选
         this.data.flag = 0;
       }
     }
@@ -61,7 +62,7 @@ Page({
         icon: 'none'
       })
     }
-
+    */
   },
 
   /**

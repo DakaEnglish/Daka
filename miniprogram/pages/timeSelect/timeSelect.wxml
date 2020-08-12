@@ -3,41 +3,46 @@
 		<view class="weui-form__text-area">
 			<h2 class="weui-form__title">课程可选时间</h2>
 		</view>
-		<view class="weui-form__control-area">
-			<view class="weui-cells__group weui-cells__group_form">
-				<view class="weui-cells weui-cells_radio">
-                    <radio-group class="radio-group" bindchange="radioChange">
-                        <label class="weui-cell weui-cell_active weui-check__label" wx:for="{{items}}" wx:key="num">
-                            <view class="weui-cell__bd">
-                                <view>{{item.value}}</view>
-                            </view>
-                            <view class="weui-cell__ft">
-                                <radio
-                                    class="weui-check"
-                                    value="{{item.num}}"
-                                    checked="{{item.checked}}"
-                                />
-                                <i class="weui-icon-checked"></i>
-                            </view>
-                        </label>
-                    </radio-group>
-				</view>
-			</view>
+       <view class="weui-flex">
+            <view class="weui-flex__item"><view class="placeholderfirstline">开始时间</view></view>
+			<view><view class="placeholderwhite">Mo</view></view>
+            <view><view class="placeholderwhite">Tu</view></view>
+            <view><view class="placeholderwhite">We</view></view>
+            <view><view class="placeholderwhite">Th</view></view>
+            <view><view class="placeholderwhite">Fri</view></view>
+            <view><view class="placeholderwhite">Sat</view></view>
+            <view><view class="placeholderwhite">Sun</view></view>
 		</view>
-		<view class="weui-form__opr-area">
-			<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="toSetTimeTable">确定</a>
+        <view class="weui-flex">
+			<view class="weui-flex__item"><view class="time">8:00</view></view>
+			<view><view class="valuable">Mon</view></view>
+            <view><view class="unvaluable">Tus</view></view>
+            <view><view class="valuable">Wed</view></view>
+            <view><view class="valuable">Thu</view></view>
+            <view><view class="valuable">Fri</view></view>
+            <view><view class="valuable">Sat</view></view>
+            <view><view class="valuable">Sun</view></view>
 		</view>
-	</view>
-</view>
-
-<view class="page" data-weui-theme="{{theme}}">
-	<view class="weui-form">
-		<view class="weui-form__text-area">
-			<h2 class="weui-form__title">课程可选时间</h2>
+        <view class="weui-flex">
+			<view class="weui-flex__item"><view class="time">8:30</view></view>
+			<view><view class="unvaluable">Mon</view></view>
+            <view><view class="valuable">Tus</view></view>
+            <view><view class="valuable">Wed</view></view>
+            <view><view class="valuable">Thu</view></view>
+            <view><view class="valuable">Fri</view></view>
+            <view><view class="valuable">Sat</view></view>
+            <view><view class="valuable">Sun</view></view>
 		</view>
-		<picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-			<a class="weui-btn weui-btn_default">日期选择器</a>
-		</picker>
+        <view class="weui-flex">
+			<view class="weui-flex__item"><view class="time">9:00</view></view>
+			<view><view class="valuable">Mon</view></view>
+            <view><view class="valuable">Tus</view></view>
+            <view><view class="valuable">Wed</view></view>
+            <view><view class="valuable">Thu</view></view>
+            <view><view class="valuable">Fri</view></view>
+            <view><view class="valuable">Sat</view></view>
+            <view><view class="valuable">Sun</view></view>
+		</view>
 		<view class="weui-form__opr-area">
 			<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="toSetTimeTable">确定</a>
 		</view>

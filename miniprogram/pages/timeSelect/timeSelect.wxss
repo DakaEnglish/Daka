@@ -1,11 +1,6 @@
-.radio-group {
-  border-bottom: 1px solid #ddd;
-}
-.radio {
-  display: block;
-  border-top: 1px solid #ddd;
-  padding: 5px;
-}
-.publish::after {
-  border: 0;
-}
+.valuable{margin:4px;padding:0.1em 0.3em;width: 29px; text-align:center;background-color:var(--weui-BG-1);height:2em;line-height:2em;color:var(--weui-FG-1)}
+.unvaluable{margin:4px;padding:0.1em 0.3em;width: 29px;text-align:center;background-color:#FFFF;height:2em;line-height:2em;color:#FFFF}
+.placeholderwhite{margin:4px;padding:0 4px;text-align:center;background-color:#FFFF;height:2em;line-height:2em;color:#FFFF}
+.placeholderfirstline{margin:4px;padding:0 4px;text-align:left;background-color:#FFFF;height:2em;line-height:2em;color:var(--weui-FG-1)}
+.choose{margin:4px;padding:0 4px;text-align:center;background-color:#FF1F;height:2em;line-height:2em;color:var(--weui-FG-1)}
+.time{margin:4px;padding:0.1em 4px;text-align:center;background-color:var(--weui-BG-1);height:2em;line-height:2em;color:var(--weui-FG-1)}

@@ -11,10 +11,10 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   const teacherCollection = db.collection('teacher')
   return await teacherCollection.where({
-      _id: event._id
-  }).update({
+    _id: event._id,
+  }).set({
     data:{
-      'freetimeTable': event.freetime
+      freetime: event.freetime
     }
   })
 }
