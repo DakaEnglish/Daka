@@ -97,6 +97,7 @@ Page({
         console.log("请求失败",res)
       }
     })
+    wx.removeStorageSync('teacher')
   },
 
   /**

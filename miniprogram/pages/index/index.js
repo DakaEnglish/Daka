@@ -77,9 +77,17 @@ Page({
           loading: false
         });
       }, 1000);
-      var value = wx.getStorageSync('user')
+      let value = wx.getStorageSync('user')
       app.globalData.nickName = value.nickName
       app.globalData.userid = value._openid
+      db.collection('user').where({
+        _openid: value._openid
+      }).get({
+        success: res=>{
+          wx.setStorageSync('user', res.data[0])
+          console.log(存储成功)
+        }
+      })
       if (value._openid === "odV3_45DRNld663gpW04sQP3NK3c" || value._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY") {
         //console.log(value._openid)
         wx.navigateTo({

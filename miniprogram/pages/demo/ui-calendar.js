@@ -21,6 +21,7 @@ Page({
     warnTime: false,
     conform: false,
     e: null,
+    empty: true,
     freetimeList: []
   },
 
@@ -102,11 +103,13 @@ Page({
           var dateInfos = []
           var i = 0
           freetimeList.forEach(element => {
-            if (element.valuable) {
+            if (element.available) {
+              that.data.empty = false
+              console.log(that.data.empty)
               var dateInfo = {
                 "name": element.time,
                 "id": i,
-                "valuable": element.valuable,
+                "available": element.available,
                 "date": that.data.dateInfo[dateDay - 1]
               }
               dateInfos.push(dateInfo)
@@ -144,10 +147,10 @@ Page({
         let week = date.week - 1
         let base = that.data.database
         let id = e.currentTarget.dataset.id
-        var freetimeList = res.data[0].freetime
+        let freetimeList = res.data[0].freetime
         //console.log(freetimeList,base,week,id)
         freetimeList[base][week][id].studentOpenId = getApp().globalData.userid
-        freetimeList[base][week][id].valuable = false
+        freetimeList[base][week][id].available = false
         //console.log(freetimeList)
         that.setData({
           freetimeList: freetimeList
@@ -172,7 +175,11 @@ Page({
               teacherid: that.data.teacherid, //存储老师id
               dateInfo: e.currentTarget.dataset.date, //保存具体日期
               time: e.currentTarget.dataset.name, //保存具体时间，0代表8-10点以此类推
-              compareInfo: e.currentTarget.dataset.date.year + '' + e.currentTarget.dataset.date.month + '' + e.currentTarget.dataset.date.day + '' + e.currentTarget.dataset.id
+              compareInfo: e.currentTarget.dataset.date.year + '' + e.currentTarget.dataset.date.month + '' + e.currentTarget.dataset.date.day + '' + e.currentTarget.dataset.id,
+              comment: {                      //评论
+                text: "",
+                flag: 0                       //0-未评价
+              }
             }
             console.log(courseInfo)
             //上传到服务器失败
@@ -238,11 +245,11 @@ Page({
 
   //生成日历，目前生成本周7天的日期
   updateDays: function (year, mouth, day) {
-    var days = [];
-    var dateDay = new Date().getDay();
-    var date = new Date().getDate();
-    var lastDay = new Date(year, mouth, 0).getDate(); //本月最后一天
-    var i = 1
+    let days = [];
+    let dateDay = new Date().getDay();
+    let date = new Date().getDate();
+    let lastDay = new Date(year, mouth, 0).getDate(); //本月最后一天
+    let i = 1
     //向数组中添加天
     for (let index = date - dateDay + 1; index <= date + 7 - dateDay; index++, i++) {
       //console.log(day+"=="+index)

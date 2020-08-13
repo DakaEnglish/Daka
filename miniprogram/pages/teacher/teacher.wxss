@@ -1,1 +1,38 @@
 /* miniprogram/pages/teacher/teacher.wxss */
+.available{margin:4px;padding:0.1em 0.3em;width: 29px; text-align:center;background-color:var(--weui-BG-1);height:2em;line-height:2em;color:var(--weui-FG-1)}
+.unavailable{margin:4px;padding:0.1em 0.3em;width: 29px;text-align:center;background-color:#3FF;height:2em;line-height:2em;color:var(--weui-FG-1)}
+.placeholderwhite{margin:4px;padding:0 4px;text-align:center;background-color:#FFFF;height:2em;line-height:2em;color:#FFFF}
+.placeholderfirstline{margin:4px;padding:0 4px;text-align:left;background-color:#FFFF;height:2em;line-height:2em;color:var(--weui-FG-1);size: 1px}
+.choose{margin:4px;padding:0 4px;text-align:center;background-color:#FF1F;height:2em;line-height:2em;color:var(--weui-FG-1)}
+.time{margin:4px;padding: 4px;text-align:center;background-color:var(--weui-BG-1);height:2em;line-height:2em;color:var(--weui-FG-1);}
+
+label{
+  border:2rpx solid #aaaaaa;
+}
+.check {
+ display:flex;
+ flex-wrap:wrap;
+ justify-content:space-around;
+
+}
+.check label {
+ width: 80rpx;
+ height: 100rpx;
+ border-radius: 8rpx;
+ /* background-color: #fff;   */
+ display: flex;
+ align-items: center;
+ margin: 0 5rpx;
+ justify-content: center;
+ /* color: #aaa; */
+ margin-top: 20rpx;
+}
+.is_checked {
+  background-color: #14a1fd;
+  opacity: 0.4;
+  color: #fff;
+  border: 2rpx solid #fff;
+}
+.is_checked>checkbox {
+ color: red;
+}
