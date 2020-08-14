@@ -12,8 +12,8 @@ Page({
   },
   compare: function (property) {
     return function (a, b) {
-      var value1 = a[property];
-      var value2 = b[property];
+      let value1 = a[property];
+      let value2 = b[property];
       return value1 - value2;
     }
   },
@@ -21,21 +21,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onShow: function (options) {
-    var id = app.globalData.userid
+    let id = app.globalData.userid
     console.log("userid:", id)
 
-    var that = this
+    let that = this
     db.collection('user').where({
         _openid: id
-      }).orderBy('course.dateInfo.month', 'asc')
-      .orderBy('course.dateInfo.day', 'asc')
-      .orderBy('course.time', 'asc')
-      .get({
+      }).get({
         success: res => {
           var course = res.data[0].course
-          //console.log("******", course)
-          course.sort(that.compare("compareInfo"));
-          //console.log("sorted:", course)
+          console.log("sorted:", course)
           var date = new Date()
           var month = date.getMonth()
           var day = date.getDate()

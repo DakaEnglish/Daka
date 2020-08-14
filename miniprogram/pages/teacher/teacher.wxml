@@ -1,30 +1,5 @@
-<!--miniprogram/pages/teacher/teacher.wxml-->
-<view class="page" data-weui-theme="{{theme}}">
-	<view class="weui-form">
-		<view class="weui-form__text-area">
-			<h2 class="weui-form__title">Choose your available time</h2>
-		</view>
-		<view class="weui-flex">
-			<view class="weui-flex__item">
-				<view >The first column is the start time. Each time slot defaults to one hour.</view>
-			</view>
-		</view>
-		<view class="weui-flex">
-			<view wx:for="{{[0, 1, 2, 3, 4, 5, 6]}}" wx:for-item="item" wx:for-index="i">
-				<view wx:for="{{time}}" wx:for-item="Item" wx:for-index="j">
-					<checkbox-group name="checkbox" class="check">
-						<label class='is_checked' wx:if="{{i == 0}}">
-							<checkbox hidden='false' /> {{Item.name}}
-						</label>
-						<label bindtap='clicks' data-day="{{i}}" data-time="{{j}}" class='{{checks[j][i].checked?"is_checked":""}}'>
-							<checkbox value="{{checks[j][i].name}}" data-val="{{checks[j][i].name}}" hidden='false' checked='{{checks[j][i].checked}}' /> {{checks[j][i].name}}
-						</label>
-					</checkbox-group>
-				</view>
-			</view>
-		</view>
-	</view>
-</view>
+<!--miniprogram/pages/choosepage/choosepage.wxml-->
 <view class="weui-form__opr-area">
-	<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="toSetTimeTable">confirm</a>
-</view>
+			<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="gotoSelect">Your Course</a>
+      <a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="gotoTeacher">Time Set</a>
+		</view>

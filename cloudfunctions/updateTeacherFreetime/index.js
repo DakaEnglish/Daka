@@ -12,7 +12,7 @@ exports.main = async (event, context) => {
   const teacherCollection = db.collection('teacher')
   return await teacherCollection.where({
     _id: event._id,
-  }).set({
+  }).update({
     data:{
       freetime: event.freetime
     }

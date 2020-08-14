@@ -14,14 +14,40 @@ exports.main = async (event, context) => {
       _openid: event.openid
     }).update({
       data: {
-        course: _.push(
-          event.courseInfo
-        )
+        course: _.push({
+          each: [
+            event.courseInfo
+          ],
+          sort: {
+            compareInfo: 1,
+          }
+        }),
+        courseid: _.push(
+            event.courseid)
       }
     })
+    try {
+      await db.collection("teacher").where({
+        _id: event.id
+      }).update({
+        data: {
+          course: _.push({
+            each: [
+              event.courseid
+            ],
+            sort: {
+              compareInfo: 1,
+            }
+          })
+        }
+      })
+    } catch (error) {
+      console.error(error)
+    }
   } catch (error) {
     console.error(error)
   }
+  
   return {
     data: event
   }

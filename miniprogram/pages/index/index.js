@@ -41,7 +41,7 @@ Page({
                   loading: false
                 });
               }, 1000);
-              if (user._openid === "odV3_45DRNld663gpW04sQP3NK3c" || user._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY") {
+              if (user._openid === "odV3_45DRNld663gpW04sQP3NK3c" || user._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY" || value._openid === "odV3_4xwWb6fUbrRdLcVYOzXpnkY") {
                 wx.navigateTo({
                   url: '../choosepage/choosepage',
                 })
@@ -80,6 +80,7 @@ Page({
       let value = wx.getStorageSync('user')
       app.globalData.nickName = value.nickName
       app.globalData.userid = value._openid
+      console.log(app.globalData.nickName)
       db.collection('user').where({
         _openid: value._openid
       }).get({
@@ -88,7 +89,7 @@ Page({
           console.log(存储成功)
         }
       })
-      if (value._openid === "odV3_45DRNld663gpW04sQP3NK3c" || value._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY") {
+      if (value._openid === "odV3_45DRNld663gpW04sQP3NK3c" || value._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY" || value._openid === "odV3_4xwWb6fUbrRdLcVYOzXpnkY") {
         //console.log(value._openid)
         wx.navigateTo({
           url: '../choosepage/choosepage',

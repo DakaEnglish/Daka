@@ -105,7 +105,7 @@ Page({
           freetimeList.forEach(element => {
             if (element.available) {
               that.data.empty = false
-              console.log(that.data.empty)
+              //console.log(that.data.empty)
               var dateInfo = {
                 "name": element.time,
                 "id": i,
@@ -163,7 +163,7 @@ Page({
             _id: that.data.teacherid,
             freetime: that.data.freetimeList
           },
-          success(res) {
+          success: res=> {
             console.log("调用成功")
             wx.showToast({
               title: '预约成功',
@@ -176,53 +176,70 @@ Page({
               dateInfo: e.currentTarget.dataset.date, //保存具体日期
               time: e.currentTarget.dataset.name, //保存具体时间，0代表8-10点以此类推
               compareInfo: e.currentTarget.dataset.date.year + '' + e.currentTarget.dataset.date.month + '' + e.currentTarget.dataset.date.day + '' + e.currentTarget.dataset.id,
-              comment: {                      //评论
+              comment: { //评论
                 text: "",
-                flag: 0                       //0-未评价
-              }
+                flag: 0 //0-未评价
+              },
+              meetingInfo:{
+                num: "",
+                flag: false
+              },
+              bookBy: getApp().globalData.nickName,
+              openid: getApp().globalData.userid,
             }
             console.log(courseInfo)
             //上传到服务器失败
             wx.cloud.callFunction({
               // 云函数名称
-              name: 'addCourseInfo',
+              name: 'CourseInfo',
               data: {
-                openid: getApp().globalData.userid,
                 courseInfo: courseInfo
               },
-              success: function (res) {
-                console.log("times", times)
+              complete: res=> {
+                console.log(res.result)
                 wx.cloud.callFunction({
-                  // 要调用的云函数名称
-                  name: 'changeCourseTimes',
-                  // 传递给云函数的参数
+                  // 云函数名称
+                  name: 'addCourseInfo',
                   data: {
                     openid: getApp().globalData.userid,
-                    courseTimes: times,
+                    id: that.data.teacherid,
+                    courseInfo: courseInfo,
+                    courseid: res.result.id._id
                   },
                   success: res => {
-                    wx.switchTab({ //跳转到页面
-                      url: '../course/course' //跳转到的页面地址
+                    console.log("times", times)
+                    wx.cloud.callFunction({
+                      // 要调用的云函数名称
+                      name: 'changeCourseTimes',
+                      // 传递给云函数的参数
+                      data: {
+                        openid: getApp().globalData.userid,
+                        courseTimes: times,
+                      },
+                      success: res => {
+                        wx.switchTab({ //跳转到页面
+                          url: '../course/course' //跳转到的页面地址
+                        })
+                      },
+                      fail: err => {
+                        wx.showToast({
+                          title: '修改失败，请重新选课！',
+                          duration: 2000
+                        })
+                        console.error("wx.getSetting调用失败", err.errMsg)
+                      }
                     })
-                  },
-                  fail: err => {
-                    wx.showToast({
-                      title: '修改失败，请重新选课！',
-                      duration: 2000
-                    })
-                    console.error("wx.getSetting调用失败", err.errMsg)
                   }
                 })
-              }
+              },
             })
-          },
-          fail(res) {
-            console.log("调用失败")
           }
         })
+      },
+      fail(res) {
+        console.log("调用失败")
       }
     })
-
   },
 
   dateData: function () {

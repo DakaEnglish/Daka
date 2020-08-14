@@ -1,0 +1,20 @@
+<view class="page" data-weui-theme="{{theme}}">
+	<view class="weui-form">
+		<view class="weui-form__text-area">
+			<h2 class="weui-form__title">Comment about student</h2>
+		</view>
+		<view class="weui-form__control-area">
+			<view class="weui-cells__group weui-cells__group_form">
+				<view class="weui-cells weui-cells_form">
+					<view class="weui-cell ">
+						<form bindsubmit="bindFormSubmit">
+							<textarea placeholder="Please write your comments here." name="textarea" />
+							<button class="weui-btn weui-btn_primary" form-type="submit"> 提交 </button>
+  					</form>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+	</view>
+</view>
