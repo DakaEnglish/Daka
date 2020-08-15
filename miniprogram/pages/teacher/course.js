@@ -10,7 +10,10 @@ Page({
     todayEmpty: 0,
     inTwoDayEmpty: 0,
     otherTimeEmpty: 0,
-    hiddenmodalput: true
+    hiddenmodalput: true,
+    meetingNum: "",
+    courseInfo:{},
+    courseId:""
   },
   compare: function (property) {
     return function (a, b) {
@@ -36,6 +39,22 @@ Page({
       _id: id
     }).get({
       success: res => {
+        /**
+         * console.log(res.data[0].course)
+         * let courseid = res.data[0].course
+         * let course = new Array(courseid.length)
+         * for (let i = 0; i < courseid.length; i++) {
+         * db.collection('course').where({
+         * _id: courseid[i]
+         * }).get({
+         * success: res => {
+         * course[i] = res.data[0]
+         * }
+         * })
+         * }
+         * console.log(course)
+         * }
+      */
         console.log(res.data[0].course)
         let courseid = res.data[0].course
         //console.log(course)
@@ -69,7 +88,8 @@ Page({
                     todayEmpty: 1,
                     ['courseList[' + i + '].type']: 1
                   })
-                } else if (!course.meetingInfo.flag) {
+                } 
+                if (!course.meetingInfo.flag) {
                   that.setData({
                     inTwoDayEmpty: 1,
                     ['courseList[' + i + '].Mtype']: 1
@@ -90,7 +110,7 @@ Page({
                     success: res_1 => {
                       let name = res_1.data[0].name
                       let image = res_1.data[0].imag
-                      console.log("month", course.dateInfo.month, "i=", i)
+                      //console.log("month", course.dateInfo.month, "i=", i)
                       that.setData({
                         ['courseList[' + i + '].teachername']: name,
                         ['courseList[' + i + '].teacherimage']: image
@@ -117,6 +137,7 @@ Page({
         that.data.courseList.sort(function (a, b) {
           return a.Info.compareInfo - b.Info.compareInfo
         })
+        console.log(that.data.courseList)
       }
     })
 
@@ -131,23 +152,58 @@ Page({
     })
   },
 
-  upload: function () {
+  upload: function (e) {
     this.setData({
       hiddenmodalput: !this.data.hiddenmodalput
     })
+    this.data.courseInfo = e.currentTarget.dataset.info
+    this.data.courseId = e.currentTarget.dataset.id
   },
   //取消按钮
   cancel: function () {
     this.setData({
       hiddenmodalput: true
     });
+    this.data.courseInfo = {}
+    this,data.courseId = ""
   },
   //确认
-  confirm: function (e) {
-    console.log(e)
+  confirm: function () {
+    console.log(this.data.meetingNum)
+    this.data.courseInfo.meetingInfo.num = this.data.meetingNum
+    this.data.courseInfo.meetingInfo.flag = true
     this.setData({
       hiddenmodalput: true
     })
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'addComment',
+      data: {
+          id: this.data.courseId,
+          course: this.data.courseInfo
+      },
+      success: res => {
+          wx.showToast({
+              title: 'Successful！',
+              duration: 2000
+          })
+          wx.navigateTo({
+              url: '../teacher/course'
+          })
+      },
+      fail: err => {
+          wx.showToast({
+              title: 'Please try again',
+              duration: 2000
+          })
+          console.error("wx.getSetting调用失败", err.errMsg)
+      }
+  })
+    this.data.meetingNum = ""
+  },
+
+  input: function(e) {
+    this.data.meetingNum = e.detail.value
   },
 
   changeweek: function (week) {

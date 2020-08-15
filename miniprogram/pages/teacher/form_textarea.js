@@ -9,7 +9,7 @@ Page({
         console.log(e.detail.value.textarea)
         try {
             let value1 = wx.getStorageSync('courseInfo')
-            let value2 = wx.getStorageInfoSync('courseId')
+            let value2 = wx.getStorageSync('courseId')
             console.log(value1, value2)
             this.setData({
                 course: value1,
@@ -23,11 +23,12 @@ Page({
             flag: 1,
             text: textarea
         }
+        console.log("***",this.data.id, this.data.course)
         wx.cloud.callFunction({
             // 云函数名称
             name: 'addComment',
             data: {
-                id: this.id,
+                id: this.data.id,
                 course: this.data.course
             },
             success: res => {

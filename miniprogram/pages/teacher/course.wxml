@@ -59,8 +59,8 @@
 					<view>{{item.week}}</view>
 					<view>{{item.time}}</view>
 				</view>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" data-Info="{{item.Info}}" data-Id="{{item.Id}}" bindtap="upload">Upload meeting number</a>
 			</view>
-			<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="upload">Upload meeting number</a>
 		</block>
 	</view>
 </view>
@@ -93,8 +93,8 @@
 					<view>{{item.week}}</view>
 					<view>{{item.time}}</view>
 				</view>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="comment" data-Info="{{item.Info}}" data-Id="{{item.Id}}">write comment</a>
 			</view>
-			<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="comment" data-Info="{{item.Info}}" data-Id="{{item.Id}}">write comment</a>
 		</block>
 	</view>
 </view>
@@ -103,5 +103,5 @@
 </view>
 
 <modal hidden="{{hiddenmodalput}}" title="Meeting Num" confirm-text="upload" cancel-text="close" bindcancel="cancel" bindconfirm="confirm"> 
- <input type='text'placeholder="000-000-000" auto-focus/>
+ <input type='text' bindinput="input" value="{{meetingNum}}" placeholder="000-000-000" auto-focus/>
  </modal>
