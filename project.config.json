@@ -111,6 +111,20 @@
 					"id": -1,
 					"name": "pages/course/course",
 					"pathName": "pages/course/course",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/type_of_course",
+					"pathName": "pages/type_of_course",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/typeCourse/typeCourse",
+					"pathName": "pages/typeCourse/typeCourse",
 					"scene": null
 				}
 			]

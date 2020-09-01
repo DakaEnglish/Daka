@@ -1,0 +1,10 @@
+<view class="container">
+  <button bindtap="IELTS" >雅思</button>
+  <button bindtap="TOEFL" >托福</button>
+  <button bindtap="interview">面试</button>
+  <button bindtap="business">商务</button>
+</view>
+
+<view wx:for="{{topic}}">
+  <button bindtap="jump">{{item}}</button>
+</view>
