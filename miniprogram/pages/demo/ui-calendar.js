@@ -81,8 +81,7 @@ Page({
         console.log("传输成功", value)
         var teacher = value
         that.data.teacherid = teacher._id
-        that.data.teacher = teacher.name
-        console.log(that.data.teacher)
+        that.setData({teacher: teacher.name})
       }
     } catch (e) {
       console.log("传输失败", value)
@@ -133,11 +132,12 @@ Page({
     this.setData({
       dialogShow: false,
     })
+    let timeid = that.data.time
     let date = e.currentTarget.dataset.date
     var times = this.data.courseRemain - 1
     var today = new Date().getFullYear() + '' + (new Date().getMonth() + 1) + '' + new Date().getDate()
     var chooseday = e.currentTarget.dataset.date.year + "" + e.currentTarget.dataset.date.month + '' + e.currentTarget.dataset.date.day
-    this.data.time = e.currentTarget.name
+    this.setData({time: e.currentTarget.name})
     var courseRemain = this.data.courseRemain
     db.collection('teacher').where({
       _id: this.data.teacherid,
@@ -163,25 +163,34 @@ Page({
             _id: that.data.teacherid,
             freetime: that.data.freetimeList
           },
-          success: res=> {
+          success: res => {
             console.log("调用成功")
             wx.showToast({
               title: '预约成功',
               duration: 2000,
               icon: 'none'
             })
+            let month = e.currentTarget.dataset.date.month - 10 < 0 ? '0' + e.currentTarget.dataset.date.month : e.currentTarget.dataset.date.month
+            let day = e.currentTarget.dataset.date.day - 10 < 0 ? '0' + e.currentTarget.dataset.date.day : e.currentTarget.dataset.date.day
+            let time = timeid - 10 < 0 ? '0' + timeid : timeid
+            console.log(timeid)
+            
             //设置用户信息
             var courseInfo = {
               teacherid: that.data.teacherid, //存储老师id
               dateInfo: e.currentTarget.dataset.date, //保存具体日期
-              time: e.currentTarget.dataset.name, //保存具体时间，0代表8-10点以此类推
-              compareInfo: e.currentTarget.dataset.date.year + '' + e.currentTarget.dataset.date.month + '' + e.currentTarget.dataset.date.day + '' + e.currentTarget.dataset.id,
+              time: e.currentTarget.dataset.name, //保存具体时间
+              compareInfo: e.currentTarget.dataset.date.year + '' + month + '' + day + '' + time,
               comment: { //评论
                 text: "",
-                flag: 0 //0-未评价
+                flag: false //false-尚未填写
               },
-              meetingInfo:{
+              meetingInfo: {
                 num: "",
+                flag: false
+              },
+              toTeacherComment: {
+                text: "",
                 flag: false
               },
               bookBy: getApp().globalData.nickName,
@@ -195,7 +204,7 @@ Page({
               data: {
                 courseInfo: courseInfo
               },
-              complete: res=> {
+              complete: res => {
                 console.log(res.result)
                 wx.cloud.callFunction({
                   // 云函数名称
@@ -372,7 +381,9 @@ Page({
     var times = this.data.courseRemain - 1
     var today = new Date().getFullYear() + '' + (new Date().getMonth() + 1) + '' + new Date().getDate()
     var chooseday = e.currentTarget.dataset.date.year + "" + e.currentTarget.dataset.date.month + '' + e.currentTarget.dataset.date.day
-    this.data.time = e.currentTarget.name
+    console.log(e.currentTarget)
+    this.setData({time: e.currentTarget.dataset.id})
+    console.log(this.data.time)
     var courseRemain = this.data.courseRemain
     if (chooseday <= today) {
       console.log("今天的课程无法选择")

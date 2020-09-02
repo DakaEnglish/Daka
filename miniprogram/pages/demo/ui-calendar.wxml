@@ -56,7 +56,7 @@
 	<view class="weui-mask"></view>
 	<view class="weui-dialog">
 		<view class="weui-dialog__hd"><strong class="weui-dialog__title">确认选课</strong></view>
-		<view class="weui-dialog__bd">您所选的老师为：{{teacher}}<br />时间为：{{time}}<br />剩余课时数：{{courseRemain}}</view>
+		<view class="weui-dialog__bd">您所选的老师为：{{teacher}}<br />剩余课时数：{{courseRemain}}</view>
 		<view class="weui-dialog__ft">
 			<a class="weui-dialog__btn weui-dialog__btn_default" bindtap="tapDialogButton">我再想想</a>
 			<a class="weui-dialog__btn weui-dialog__btn_primary" bindtap="book">确定</a>

@@ -1,0 +1,11 @@
+/* pages/typeCourse/typeCourse.wxss */
+.container{ 
+  display : flex ;
+  flex-flow : row;
+ }
+ .tag_2{ 
+  width: 35%; 
+  margin-top: 35px; 
+  margin-right:10px;
+  float:right;
+ }
