@@ -9,7 +9,7 @@
 					<view class="weui-cell ">
 						<form bindsubmit="bindFormSubmit">
 							<textarea placeholder="Please write your comments here." name="textarea" />
-							<button class="weui-btn weui-btn_primary" form-type="submit"> 提交 </button>
+							<button class="weui-btn weui-btn_primary" form-type="submit" style="background-color:#FFC125;"> submit </button>
   					</form>
 					</view>
 				</view>

@@ -20,7 +20,7 @@ Page({
         }
         let textarea = e.detail.value.textarea
         this.data.course.comment = {
-            flag: 1,
+            flag: true,
             text: textarea
         }
         console.log("***",this.data.id, this.data.course)

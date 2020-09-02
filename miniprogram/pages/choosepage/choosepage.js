@@ -11,7 +11,7 @@ Page({
   gotoSelect: function(event){
     //跳转页面
     wx.switchTab({
-      url: '/pages/select/select'
+      url: '/pages/typeCourse/typeCourse'
     })
   },
 

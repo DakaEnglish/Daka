@@ -96,7 +96,7 @@ Page({
                   })
                   //console.log(that.data.todayEmpty)
                 }
-                if (course.comment.flag == 0) {
+                if (course.comment.flag == false) {
                   that.setData({
                     otherTimeEmpty: 1,
                     ['courseList[' + i + '].Ctype']: 1,
