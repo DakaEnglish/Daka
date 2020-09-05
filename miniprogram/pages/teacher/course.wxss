@@ -6,6 +6,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding:30rpx;
+  padding-bottom: 30rpx;
   border-bottom:2rpx solid #ddd;
   position: relative;
 }
@@ -79,15 +80,15 @@
   color:#CD661D;
 }
 .nav_section_items .section_book{
-  width:90rpx;
-  height:90rpx;
-  font-size:26rpx;
-  border-radius:100%;
-  background:#FFC125;
-  line-height: 80rpx;
+  width:400rpx;
+  height:10rpx;
+  font-size:40rpx;
+  border-radius:0%;
+  background:#ffc125;
+  line-height: 60rpx;
   color:#fff;
   text-align: center;
-  margin-top:35rpx;
+  margin-top:5rpx;
 }
 
 .ar_line{

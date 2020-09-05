@@ -7,31 +7,27 @@
 	<view class="nav_section">
 		<block wx:for="{{courseList}}" wx:key="key">
 			<view wx:if="{{item.type === 1}}" class="nav_section_items">
-				<!--image-->
-				<view class="section_image">
-					<image src="{{item.teacherimage}}"></image>
-				</view>
-				<!--content-->
-				<view class="section_cont">
-					<view class="section_cont_sub">
-						<view>教师：</view>
+					<!--image-->
+					<view class="section_image">
+						<image src="{{item.teacherimage}}"></image>
 					</view>
-					<view class="section_cont_price">
-						<view>{{item.teachername}}</view>
+					<!--content-->
+					<view class="section_cont">
+						<view class="section_cont_sub">教师：</view>
+						<view class="section_cont_price">{{item.teachername}}</view>
+						<view>
+							<text>{{item.dateInfo.year}}/{{item.dateInfo.month}}/{{item.dateInfo.day}}</text>
+						</view>
+						<view>{{item.week}}</view>
+						<view>{{item.time}}</view>
 					</view>
-					<view>
-						<block>{{item.dateInfo.year}}/</block>
-						<block>{{item.dateInfo.month}}/</block>
-						<block>{{item.dateInfo.day}}</block>
+					<!--content end-->
+					<view wx:if="{{item.numFlag}}">
+					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">会 议 号</a>
 					</view>
-					<view>{{item.week}}</view>
-					<view>{{item.time}}</view>
-				</view>
 			</view>
 			<!--这个button需要布局-->
-			<view wx:if="{{item.numFlag}}">
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="MeetingNum" data-Id="{{item.Id}}">查看会议号</a>
-			</view>
+				
 		</block>
 	</view>
 </view>
@@ -69,10 +65,10 @@
 			</view>
 			<!--这个button需要布局-->
 				<view wx:if="{{item.numFlag}}">
-					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="MeetingNum" data-Id="{{item.Id}}">查看会议号</a>
+					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">查看会议号</a>
 				</view>
 				<view wx:if="{{item.dropType}}">
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="dropClass" data-Id="{{item.Id}}" data-teacher="{{item.teachername}}" data-time="{{item.time}}" data-teacherid="{{item.teacherid}}">退课</a>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="dropClass" data-Id="{{item.Id}}" data-teacher="{{item.teachername}}" data-time="{{item.time}}" data-teacherid="{{item.teacherid}}">退课</a>
 			</view>
 		</block>
 	</view>
@@ -81,7 +77,7 @@
 	您没有课程
 </view>
 
-<view class="nav_section_title">
+<view class="nav_section_title"> 
 	<view class="title_background">历 史 课 程 </view>
 </view>
 
@@ -111,7 +107,7 @@
 				</view>
 				<!--这个button需要布局-->
 				<!--teacherComment函数还没写，不知道哪种方式显示评论更好-->
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="teacherComment" data-Id="{{item.Id}}">查看教师评价</a>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="teacherComment" data-Id="{{item.Id}}">查看教师评价</a>
 			</view>
 		</block>
 	</view>

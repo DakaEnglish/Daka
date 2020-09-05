@@ -5,29 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    topic:[]
+    type:1,
+    topic:['aaaaaaa','bbbbbbbb','cccccccccc']
   },
 
   IELTS: function(event){
     this.setData({
+      type:1,
       topic:['aaaaaaa','bbbbbbbb','cccccccccc']
     })
   },
 
   TOEFL: function(event){
     this.setData({
+      type:2,
       topic:['21221','55645','098765']
     })
   },
 
   interview: function(event){
     this.setData({
+      type:3,
       topic:['AAAA','JGFJ','LULULU']
     })
   },
 
   business: function(event){
     this.setData({
+      type:4,
       topic:['%^%$^%','++++','@@@@@']
     })
   },

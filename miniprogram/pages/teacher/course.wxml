@@ -1,6 +1,6 @@
 <!--miniprogram/pages/course/course.wxml-->
 <view class="nav_section_title">
-	<view class="title_background">Today's lesson</view>
+	<view class="title_background">TODAY'S  LESSON</view>
 </view>
 
 <view wx:if="{{ todayEmpty === 1 }}">
@@ -8,21 +8,22 @@
 		<block wx:for="{{courseList}}" wx:key="key">
 			<view wx:if="{{item.type === 1}}" class="nav_section_items">
 				<!--content-->
+
+
+
 				<view class="section_cont">
 					<view class="section_cont_sub">
-						<view>teacher：</view>
+						<text>date：</text>
+						<text class="section_cont_price">{{item.dateInfo.year}} / {{item.dateInfo.month}} / {{item.dateInfo.day}}</text>
 					</view>
-					<view class="section_cont_price">
-						<view>{{item.teachername}}</view>
+					<view class="section_cont_sub">
+						<text>time：</text>
+						<text class="section_cont_price">{{item.time}}</text>
 					</view>
-					<view>
-						<block>{{item.dateInfo.year}}/</block>
-						<block>{{item.dateInfo.month}}/</block>
-						<block>{{item.dateInfo.day}}</block>
-					</view>
-					<view>{{item.week}}</view>
-					<view>{{item.time}}</view>
+				
+					<view>booker : {{item.bookBy}}</view>
 				</view>
+
 
 			</view>
 		</block>
@@ -35,7 +36,7 @@
 <text class="ar_line"> </text>
 
 <view class="nav_section_title">
-	<view class="title_background">Courses that require meeting number</view>
+	<view class="title_background">REQUIRE MEETING NUMBER</view>
 </view>
 <view wx:if="{{ inTwoDayEmpty === 1}}">
 	<view class="nav_section">
@@ -44,22 +45,17 @@
 				<!--content-->
 				<view class="section_cont">
 					<view class="section_cont_sub">
-						<text>teacher：</text>
-						<text class="section_cont_price">{{item.teachername}}</text>
+						<text>date：</text>
+						<text class="section_cont_price">{{item.dateInfo.year}} / {{item.dateInfo.month}} / {{item.dateInfo.day}}</text>
 					</view>
 					<view class="section_cont_sub">
-						<text>booker：</text>
-						<text class="section_cont_price">{{item.bookBy}}</text>
+						<text>time：</text>
+						<text class="section_cont_price">{{item.time}}</text>
 					</view>
-					<view>
-						<block>{{item.dateInfo.year}} / </block>
-						<block>{{item.dateInfo.month}} / </block>
-						<block>{{item.dateInfo.day}}</block>
-					</view>
-					<view>{{item.week}}</view>
-					<view>{{item.time}}</view>
+				
+					<view>booker : {{item.bookBy}}</view>
 				</view>
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" data-Info="{{item.Info}}" data-Id="{{item.Id}}" bindtap="upload">Upload meeting number</a>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;line-height:45rpx;padding-top:25rpx" data-Info="{{item.Info}}" data-Id="{{item.Id}}" bindtap="upload">Upload meeting number</a>
 			</view>
 		</block>
 	</view>
@@ -69,7 +65,7 @@
 </view>
 
 <view class="nav_section_title">
-	<view class="title_background">need comment</view>
+	<view class="title_background">NEED COMMENT</view>
 </view>
 <view wx:if="{{ otherTimeEmpty === 1}}">
 	<view class="nav_section">
@@ -78,22 +74,18 @@
 				<!--content-->
 				<view class="section_cont">
 					<view class="section_cont_sub">
-						<text>teacher：</text>
-						<text class="section_cont_price">{{item.teachername}}</text>
+						<text>date：</text>
+						<text class="section_cont_price">{{item.dateInfo.year}} / {{item.dateInfo.month}} / {{item.dateInfo.day}}</text>
 					</view>
 					<view class="section_cont_sub">
-						<text>booker：</text>
-						<text class="section_cont_price">{{item.bookBy}}</text>
+						<text>time：</text>
+						<text class="section_cont_price">{{item.time}}</text>
 					</view>
-					<view>
-						<block>{{item.dateInfo.year}} / </block>
-						<block>{{item.dateInfo.month}} / </block>
-						<block>{{item.dateInfo.day}}</block>
-					</view>
-					<view>{{item.week}}</view>
-					<view>{{item.time}}</view>
+				
+					<view>booker : {{item.bookBy}}</view>
 				</view>
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="comment" data-Info="{{item.Info}}" data-Id="{{item.Id}}">write comment</a>
+
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;padding-top:40rpx" bindtap="comment" data-Info="{{item.Info}}" data-Id="{{item.Id}}">write comment</a>
 			</view>
 		</block>
 	</view>

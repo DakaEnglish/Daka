@@ -1,8 +1,8 @@
 <view class="container">
-  <button bindtap="IELTS" >雅思</button>
-  <button bindtap="TOEFL" >托福</button>
-  <button bindtap="interview">面试</button>
-  <button bindtap="business">商务</button>
+  <button class="{{type==1?'title_check':'title_normal'}}" bindtap="IELTS" >雅 思</button>
+  <button class="{{type==2?'title_check':'title_normal'}}" bindtap="TOEFL" >托 福</button>
+  <button class="{{type==3?'title_check':'title_normal'}}" bindtap="interview">面 试</button>
+  <button class="{{type==4?'title_check':'title_normal'}}" bindtap="business">商 务</button>
 </view>
 
 <view wx:for="{{topic}}">
