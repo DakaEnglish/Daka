@@ -376,16 +376,20 @@ Page({
 
   //
   conform(e) {
-    var courseRemain = this.data.courseRemain
+    let courseRemain = this.data.courseRemain
     let date = e.currentTarget.dataset.date
-    var times = this.data.courseRemain - 1
-    var today = new Date().getFullYear() + '' + (new Date().getMonth() + 1) + '' + new Date().getDate()
-    var chooseday = e.currentTarget.dataset.date.year + "" + e.currentTarget.dataset.date.month + '' + e.currentTarget.dataset.date.day
+    let times = this.data.courseRemain - 1
+    let month = ((new Date().getMonth() + 1) + "") > 9 ? (new Date().getMonth() + 1) + "": ('0'+(new Date().getMonth() + 1))
+    let day = (new Date().getDate())+"" > 9 ? new Date().getDate() + "" : ('0'+new Date().getDate())
+    let today = new Date().getFullYear() + '' + month + '' + day
+    month = e.currentTarget.dataset.date.month - 10 < 0 ? '0' + e.currentTarget.dataset.date.month : e.currentTarget.dataset.date.month
+    day = e.currentTarget.dataset.date.day - 10 < 0 ? '0' + e.currentTarget.dataset.date.day : e.currentTarget.dataset.date.day
+    let chooseday = e.currentTarget.dataset.date.year + "" + month + "" + day
     console.log(e.currentTarget)
     this.setData({time: e.currentTarget.dataset.id})
-    console.log(this.data.time)
-    var courseRemain = this.data.courseRemain
-    if (chooseday <= today) {
+    console.log(chooseday,today)
+    courseRemain = this.data.courseRemain
+    if (chooseday == today || chooseday < today) {
       console.log("今天的课程无法选择")
       this.setData({
         warnTime: true

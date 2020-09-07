@@ -19,7 +19,7 @@
                             <label class="weui-label">其他信息</label>
                         </view>
 						<view class="weui-cell__bd">
-							<input class="weui-input" placeholder="填写其他信息（预留）" bindinput='otherthing' />
+							<input class="weui-input" placeholder="邀请码" bindinput='otherthing' />
 						</view>
 					</view>
 				</view>

@@ -47,7 +47,7 @@ Page({
                 })
               } else {
                 wx.switchTab({
-                  url: '../select/select',
+                  url: '../typeCourse/typeCourse',
                 })
               }
               wx.setStorageSync('user', user)
@@ -77,28 +77,31 @@ Page({
           loading: false
         });
       }, 1000);
+      
       let value = wx.getStorageSync('user')
       app.globalData.nickName = value.nickName
       app.globalData.userid = value._openid
-      console.log(app.globalData.nickName)
+      console.log(value._openid)
+      if(value!=null){
       db.collection('user').where({
         _openid: value._openid
       }).get({
         success: res=>{
           wx.setStorageSync('user', res.data[0])
-          console.log(存储成功)
+          console.log(存储成功,user)
         }
       })
-      if (value._openid === "odV3_45DRNld663gpW04sQP3NK3c" || value._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY" || value._openid === "odV3_4xwWb6fUbrRdLcVYOzXpnkY") {
+      if (user._openid === "odV3_45DRNld663gpW04sQP3NK3c" || value._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY" || value._openid === "odV3_4xwWb6fUbrRdLcVYOzXpnkY") {
         //console.log(value._openid)
         wx.navigateTo({
           url: '../choosepage/choosepage',
         })
       } else if (value._openid != null) {
         wx.switchTab({
-          url: '../select/select',
+          url: '../typeCourse/typeCourse',
         })
       }
+    }
     } catch (e) {
       //需要用户同意授权
       wx.getSetting({
