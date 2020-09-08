@@ -125,6 +125,34 @@
 					"id": -1,
 					"name": "pages/typeCourse/typeCourse",
 					"pathName": "pages/typeCourse/typeCourse",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/choosepage/choosepage",
+					"pathName": "pages/choosepage/choosepage",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/daySelect/daySelect",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/demo/ui-calendar",
+					"pathName": "pages/demo/ui-calendar",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/master/master",
+					"pathName": "pages/master/master",
 					"scene": null
 				}
 			]

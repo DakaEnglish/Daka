@@ -23,7 +23,7 @@
 					</view>
 					<!--content end-->
 					<view wx:if="{{item.numFlag}}">
-					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">会 议 号</a>
+					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">会 议 号</a>
 					</view>
 			</view>
 			<!--这个button需要布局-->
@@ -65,10 +65,10 @@
 			</view>
 			<!--这个button需要布局-->
 				<view wx:if="{{item.numFlag}}">
-					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">查看会议号</a>
+					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">查看会议号</a>
 				</view>
 				<view wx:if="{{item.dropType}}">
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="dropClass" data-Id="{{item.Id}}" data-teacher="{{item.teachername}}" data-time="{{item.time}}" data-teacherid="{{item.teacherid}}">退课</a>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rp;padding-left:12rpxx;margin:0rpx" bindtap="dropClass" data-Id="{{item.Id}}" data-teacher="{{item.teachername}}" data-time="{{item.time}}" data-teacherid="{{item.teacherid}}">退课</a>
 			</view>
 		</block>
 	</view>
@@ -107,7 +107,7 @@
 				</view>
 				<!--这个button需要布局-->
 				<!--teacherComment函数还没写，不知道哪种方式显示评论更好-->
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx" bindtap="teacherComment" data-Id="{{item.Id}}">查看教师评价</a>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="teacherComment" data-Id="{{item.Id}}">教师评语</a>
 			</view>
 		</block>
 	</view>

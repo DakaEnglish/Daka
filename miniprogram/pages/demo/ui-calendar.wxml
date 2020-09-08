@@ -9,7 +9,7 @@
 <view class="body-days">
 	<block wx:for="{{days}}" wx:key="index">
 		<view class="days-item">
-			<view data-year="{{year}}" data-month="{{mouth}}" data-value="{{item.value}}" data-week="{{item.week}}" bindtap='getdayinfo' class="{{item.class}}" wx:if="{{item.value>0}}">{{item.value}}
+			<view data-year="{{year}}" data-month="{{mouth}}" data-value="{{item.value}}" data-week="{{item.week}}" bindtap='getdayinfo' class="{{item.class}}"  wx:if="{{item.value>0}}">{{item.value}}
 			</view>
 		</view>
 	</block>
@@ -21,7 +21,7 @@
 			<view class="flex-item bc_green">
 				<view class='ContentText' style="flex-direction:row;">
 					<view class='ContentTextValue'>{{item.name}}</view>
-					<view wx:if="{{item.available}}" class='ContentTextValue'><button data-id='{{item.id}}' data-name='{{item.name}}' data-date='{{item.date}}' bindtap='conform'>预约</button>
+					<view wx:if="{{item.available}}" class='ContentTextValue'><button data-id='{{item.id}}' data-name='{{item.name}}' data-date='{{item.date}}' bindtap='conform' style="background-color:#FFC125;">预约</button>
 					</view>
 					<view wx:if="{{!item.available}}" class='ContentTextValue'><button class='btnno'>已满</button>
 					</view>

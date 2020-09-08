@@ -1,1 +1,9 @@
 /* miniprogram/pages/master/master.wxss */
+.max-border{
+  margin: 15rpx;
+}
+
+.box{
+  border-bottom:2rpx solid #ddd;
+  padding: 30rpx
+}
