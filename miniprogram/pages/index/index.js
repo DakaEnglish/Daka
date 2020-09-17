@@ -15,6 +15,37 @@ Page({
 
   onGotUserInfo: function (e) {
     let that = this
+    wx.getSetting({
+      success(res) {
+        // 如果没有则获取授权
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            fail() {
+              wx.showModal({
+                title: '提示',
+                content: '若点击不授权，将无法继续登陆',
+                cancelText: '不授权',
+                cancelColor: '#999',
+                confirmText: '授权',
+                confirmColor: '#f94218',
+                success(res) {
+                  if (res.confirm) {
+                    wx.openSetting({
+                      success(res) {
+                        console.log(res.authSetting)
+                      }
+                    })
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            }
+          })
+        }
+      }
+    })
     // 定义调用云函数获取openid
     wx.cloud.callFunction({
       name: 'getUserid',
@@ -41,9 +72,13 @@ Page({
                   loading: false
                 });
               }, 1000);
-              if (user._openid === "odV3_45DRNld663gpW04sQP3NK3c" || user._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY" || value._openid === "odV3_4xwWb6fUbrRdLcVYOzXpnkY") {
+              if (user.Debugger) {
                 wx.navigateTo({
                   url: '../choosepage/choosepage',
+                })
+              } else if (user.teacherid) {
+                wx.navigateTo({
+                  url: '../teacher/teacher',
                 })
               } else {
                 wx.switchTab({
@@ -65,91 +100,36 @@ Page({
 
   /**
    * 生命周期函数--监听页面加载
-   */
+   
   onLoad: function () {
     let _this = this
     this.setData({
       loading: true
     });
-    try {
-      setTimeout(() => {
-        this.setData({
-          loading: false
-        });
-      }, 1000);
-      
-      let value = wx.getStorageSync('user')
-      app.globalData.nickName = value.nickName
-      app.globalData.userid = value._openid
-      console.log(value._openid)
-      if(value!=null){
-      db.collection('user').where({
-        _openid: value._openid
-      }).get({
-        success: res=>{
-          wx.setStorageSync('user', res.data[0])
-          console.log(存储成功,user)
-        }
+    //需要用户同意授权
+    console.log(res)
+    app.globalData.userInfo = res.result.data.userData
+    app.globalData.userId = res.result.data._id
+    this.setData({
+      loading: false
+    });
+    if (value.Debugger) {
+      wx.navigateTo({
+        url: '../choosepage/choosepage',
       })
-      if (user._openid === "odV3_45DRNld663gpW04sQP3NK3c" || value._openid === "odV3_40bsUVw28aRbwNBDIC6VRoY" || value._openid === "odV3_4xwWb6fUbrRdLcVYOzXpnkY") {
-        //console.log(value._openid)
-        wx.navigateTo({
-          url: '../choosepage/choosepage',
-        })
-      } else if (value._openid != null) {
-        wx.switchTab({
-          url: '../typeCourse/typeCourse',
-        })
-      }
-    }
-    } catch (e) {
-      //需要用户同意授权
-      wx.getSetting({
-        success: function (res) {
-          if (res.authSetting['scope.userInfo']) {
-            app.globalData.auth['scope.userInfo'] = true //将授权结果写入app.js里的全局变量
-            wx.cloud.callFunction({
-              name: 'get_setUserInfo',
-              data: {
-                getSelf: true
-              },
-              success: res => {
-                if (res.errMsg == "cloud.callFunction:ok" && res.result) {
-                  //如果成功获取到，将用户资料写入app.js的全局变量
-                  console.log(res)
-                  app.globalData.userInfo = res.result.data.userData
-                  app.globalData.userId = res.result.data._id
-                  wx.switchTab({
-                    url: '/pages/course'
-                  })
-                } else {
-                  _this.setData({
-                    hiddenButton: false
-                  })
-                  console.log("未注册")
-                }
-              },
-              fail: err => {
-                _this.setData({
-                  hiddenButton: false
-                })
-                //console.error("get_setUserInfo调用失败",err.errMsg)
-              }
-            })
-          } else {
-            _this.setData({
-              hiddenButton: false
-            })
-            console.log("未授权")
-          }
-        },
-        fail(err) {
-          _this.setData({
-            hiddenButton: false
-          })
-          console.error("wx.getSetting调用失败", err.errMsg)
-        }
+    } else if (value.teacherid != null) {
+      wx.navigateTo({
+        url: '../teacher/teacher',
+      })
+    } else {
+      wx.switchTab({
+        url: '../typeCourse/typeCourse',
       })
     }
+    _this.setData({
+      hiddenButton: false
+    })
+    console.log("未注册")
   }
+  //*/
 })

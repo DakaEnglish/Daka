@@ -1,45 +1,62 @@
 // pages/typeCourse/typeCourse.js
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    type:1,
-    topic:['aaaaaaa','bbbbbbbb','cccccccccc']
+    type: 1,
+    topic: ['aaaaaaa', 'bbbbbbbb', 'cccccccccc']
   },
 
-  IELTS: function(event){
+  IELTS: function (event) {
     this.setData({
-      type:1,
-      topic:['aaaaaaa','bbbbbbbb','cccccccccc']
+      type: 1,
+      topic: ['aaaaaaa', 'bbbbbbbb', 'cccccccccc']
     })
   },
 
-  TOEFL: function(event){
+  TOEFL: function (event) {
     this.setData({
-      type:2,
-      topic:['21221','55645','098765']
+      type: 2,
+      topic: ['21221', '55645', '098765']
     })
   },
 
-  interview: function(event){
+  interview: function (event) {
     this.setData({
-      type:3,
-      topic:['AAAA','JGFJ','LULULU']
+      type: 3,
+      topic: ['AAAA', 'JGFJ', 'LULULU']
     })
   },
 
-  business: function(event){
+  business: function (event) {
     this.setData({
-      type:4,
-      topic:['%^%$^%','++++','@@@@@']
+      type: 4,
+      topic: ['%^%$^%', '++++', '@@@@@']
     })
   },
 
-  jump: function(event){
+  jump: function (event) {
     wx.navigateTo({
       url: '/pages/select/select'
+    })
+  },
+
+  onGotUserInfo: function () {
+    wx.clearStorage()
+    wx.openSetting({})
+    wx.getSetting({
+      success(res) {
+        // 如果没有则跳转
+        console.log(res.authSetting)
+        if (!res.authSetting['scope.userInfo']) {
+          wx.reLaunch({
+            url: '../index/index',
+          })
+        }
+      }
     })
   },
 

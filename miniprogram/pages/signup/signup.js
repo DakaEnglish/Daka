@@ -25,6 +25,7 @@ Page({
     let num = this.data.num
     let other = this.data.other
     let teacherid = null
+    let Debugger = false
     console.log("点击了注册")
     //校验手机号
     if (num.length != 11) {
@@ -59,7 +60,8 @@ Page({
         other: other,
         course: [],
         courseTimes: 0,
-        teacherid: teacherid
+        teacherid: teacherid,
+        Debugger: Debugger
       },
       success(res) {
         console.log('注册成功', res)
