@@ -8,9 +8,10 @@
 <view wx:for="{{topic}}">
   <button bindtap="jump">{{item}}</button>
 </view>
-
+<!--
 <view>
 <button class="weui-btn weui-btn_primary" style="background-color:#FFC125;" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
   <text >退出登陆</text>
   </button>
   </view>
+  -->

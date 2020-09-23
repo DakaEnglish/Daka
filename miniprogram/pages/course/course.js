@@ -1,3 +1,4 @@
+
 const app = getApp()
 const db = wx.cloud.database()
 const _ = db.command
@@ -88,6 +89,11 @@ Page({
                     ['courseList[' + i + '].type']: 0,
                     ['courseList[' + i + '].dropType']: false,
                   })
+                  if(course.comment.flag){
+                    that.setData({
+                      ['courseList[' + i + '].commentType']: true
+                    })
+                  }
                 } else if (course.dateInfo.day == day1 && course.dateInfo.month == month1 + 1) {
                   //今日课程，可查会议号
                   that.setData({
@@ -347,5 +353,17 @@ Page({
     if (name == "19:30-20:00") return 19
     if (name == "20:00-20:30") return 20
     if (name == "20:30-21:00") return 21
+  },
+
+  teacherComment: function(e) {
+    console.log(e.currentTarget)
+    let tmp ={
+      id: e.currentTarget.dataset.id,
+      teacher: e.currentTarget.dataset.teacher
+    }
+    wx.setStorageSync('tmp', tmp)
+    wx.navigateTo({
+      url: '/pages/course/comment',
+    })
   }
 })
