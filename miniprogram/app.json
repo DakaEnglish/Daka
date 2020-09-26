@@ -16,7 +16,8 @@
     "pages/master/master",
     "pages/master/changeCourse",
     "pages/teacher/course",
-    "pages/typeCourse/typeCourse"
+    "pages/typeCourse/typeCourse",
+    "pages/course/comment"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -38,6 +39,12 @@
         "text": "选课",
         "iconPath": "icons/search.png",
         "selectedIconPath": "icons/search_1.png"
+      },
+      {
+        "pagePath":"pages/my/my",
+        "text":"我们",
+        "iconPath":"icons/user.png",
+        "selectedIconPath":"icons/user_1.png"
       }
     ]
   },

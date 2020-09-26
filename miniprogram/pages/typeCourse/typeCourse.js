@@ -7,34 +7,34 @@ Page({
    */
   data: {
     type: 1,
-    topic: ['aaaaaaa', 'bbbbbbbb', 'cccccccccc']
+    topic: ['Part1-家乡 Hometown','Part1-校园生活 School Life','Part1-日常生活 Daily Routine','Part1-爱好Hobbies','Part2-人物题-描述你的好朋友 Describe your best friend','Part2-人物题-描述一个你知道的有智慧的人 Describe an intelligent person you know','part2-人物题-描述一个外语说得好的人 Describe a person who speaks a foreign language well','part2-人物题-描述一个你想一起学习或者工作的人 Describe someone you would like to study or work with','part2-地点题-描述一个公园 Describe a park','part2-地点题-描述一个你去过的城市 Describe a city you have visited','part2-地点题-描述一个人们去听音乐的地方 Describe a place you know where people go to listen to music','part2-地点题-描述你理想中的家 Describe your ideal home','Part3-比较题-报纸和杂志的差异 What are the differences between newspapers and magazines？']
   },
 
   IELTS: function (event) {
     this.setData({
       type: 1,
-      topic: ['aaaaaaa', 'bbbbbbbb', 'cccccccccc']
+      topic: ['Part1-家乡 Hometown','Part1-校园生活 School Life','Part1-日常生活 Daily Routine','Part1-爱好Hobbies','Part2-人物题-描述你的好朋友 Describe your best friend','Part2-人物题-描述一个你知道的有智慧的人 Describe an intelligent person you know','part2-人物题-描述一个外语说得好的人 Describe a person who speaks a foreign language well','part2-人物题-描述一个你想一起学习或者工作的人 Describe someone you would like to study or work with','part2-地点题-描述一个公园 Describe a park','part2-地点题-描述一个你去过的城市 Describe a city you have visited','part2-地点题-描述一个人们去听音乐的地方 Describe a place you know where people go to listen to music','part2-地点题-描述你理想中的家 Describe your ideal home','Part3-比较题-报纸和杂志的差异 What are the differences between newspapers and magazines？']
     })
   },
 
   TOEFL: function (event) {
     this.setData({
       type: 2,
-      topic: ['21221', '55645', '098765']
+      topic: ['21221']
     })
   },
 
   interview: function (event) {
     this.setData({
       type: 3,
-      topic: ['AAAA', 'JGFJ', 'LULULU']
+      topic: ['AAAA']
     })
   },
 
   business: function (event) {
     this.setData({
       type: 4,
-      topic: ['%^%$^%', '++++', '@@@@@']
+      topic: ['%^%$^%']
     })
   },
 

@@ -107,8 +107,10 @@
 				</view>
 				<!--这个button需要布局-->
 				<!--teacherComment函数还没写，不知道哪种方式显示评论更好-->
-				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="teacherComment" data-Id="{{item.Id}}">教师评语</a>
+				<view wx:if="{{item.commentType}}">
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="teacherComment" data-Id="{{item.Id}}" data-teacher="{{item.teachername}}">教师评语</a>
 			</view>
+		</view>
 		</block>
 	</view>
 </view>

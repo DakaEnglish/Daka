@@ -6,11 +6,17 @@
 </view>
 
 <view wx:for="{{topic}}">
-  <button bindtap="jump">{{item}}</button>
+  <view wx:if="{{type==1}}">
+    <button bindtap="jump" style="width:720rpx">{{item}}</button>
+  </view>
+  <view wx:else>
+    <view>开发中请期待</view>
+  </view>
 </view>
-
+<!--
 <view>
 <button class="weui-btn weui-btn_primary" style="background-color:#FFC125;" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
   <text >退出登陆</text>
   </button>
   </view>
+  -->
