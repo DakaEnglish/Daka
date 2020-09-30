@@ -270,11 +270,11 @@ Page({
   },
 
   //生成日历，目前生成本周7天的日期
-  updateDays: function (year, mouth, day) {
+  updateDays: function (year, month, day) {
     let days = [];
     let dateDay = new Date().getDay();
     let date = new Date().getDate();
-    let lastDay = new Date(year, mouth, 0).getDate(); //本月最后一天
+    let lastDay = new Date(year, month, 0).getDate(); //本月最后一天
     let i = 1
     //向数组中添加天
     for (let index = date - dateDay + 1; index <= date + 7 - dateDay; index++, i++) {
@@ -322,7 +322,7 @@ Page({
     this.setData({
       days: days,
       year: year,
-      month: mouth,
+      month: month,
       week: dateDay
     })
   },
