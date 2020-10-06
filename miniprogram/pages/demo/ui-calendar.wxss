@@ -1,0 +1,101 @@
+.date {
+    background-color: #ececec;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    line-height: 3em;
+    align-items: center;
+}
+
+.direction {
+    width: 40rpx;
+    margin: 10rpx;
+    height: 40rpx;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1rpx solid #ececec;
+}
+
+.weeks-item-text {
+    width: 100%;
+    line-height: 2em;
+    font-size: 40rpx;
+    text-align: center;
+}
+
+.body-days {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.days-item {
+    width: 14.285%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.days-item-text {
+    width: 30rpx;
+    padding: 16rpx;
+    font-size: 30rpx;
+    border-radius: 50%;
+    border: 0rpx solid #ececec;
+    margin-top: 5rpx;
+    margin-bottom: 5rpx;
+    color: #000;
+}
+.days-item-text-select {
+    width: 38rpx;
+    padding: 16rpx;
+    font-size: 30rpx;
+    font-weight: bold;
+    border-radius: 50%;
+    border: 0rpx solid lightblue;
+    margin-top: 5rpx;
+    margin-bottom: 5rpx;
+    background-color: gray;
+}
+.section{
+   margin-top: 10rpx;
+   background-color: #ececec;
+}
+.flex-wrp{
+  padding: 10rpx;
+}
+.flex-item{
+  border-radius: 10rpx;
+  margin: 10rpx;
+  height: 80px;
+  align-items:center;
+  display: flex;
+}
+.bc_green{
+  background-color: white
+  
+  }
+.ContentText{
+  display: flex;
+  padding: 5rpx;
+  width: 100%
+}
+
+.ContentTextValue{
+  margin: 20rpx;
+  width: 100%;
+}
+.ContentText button{
+  float: right;
+  color:white;
+  background:#07C160;
+  margin: auto;
+}
+.ContentText .btnno{
+    background:lightgray;
+}

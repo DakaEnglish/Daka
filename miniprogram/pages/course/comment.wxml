@@ -1,0 +1,8 @@
+<view class="page" data-weui-theme="{{theme}}">
+	<view class="weui-msg">
+		<view class="weui-msg__text-area">
+			<view class="weui-msg__title">{{time}}<a>{{teacher}}</a> </view>
+			<h3 class="weui-msg__desc">{{comment}}</h3>
+		</view>
+  </view>
+</view>

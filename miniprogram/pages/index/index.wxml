@@ -1,0 +1,28 @@
+<view class="ar_line"> </view>
+<view class="fadeIn {{hideLoading ? 'fadeOut' : ''}}" wx:if="{{loading}}">
+		<view class="weui-mask_transparent"></view>
+		<view class="weui-toast">
+			<i class="weui-loading weui-icon_toast"></i>
+			<view class="weui-toast__content">数据加载中</view>
+		</view>
+	</view>
+<view class = 'container'>
+ <open-data class="avs" type="userAvatarUrl" />
+ <view class="ar_line_small"> </view>
+ <view class = 'username'>
+  <open-data type="userNickName" />
+  <text> 请由此授权登录</text>
+ </view>
+ <view class="ar_line_small"> </view>
+ <button class="weui-btn weui-btn_primary" style="background-color:#FFC125;" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">
+  <text >点此授权登录</text>
+ </button>
+</view>
+
+<view class="fadeIn {{hideToast ? 'fadeOut' : ''}}" wx:if="{{toast}}">
+		<view class="weui-mask_transparent"></view>
+		<view class="weui-toast">
+			<i class="weui-icon-success-no-circle weui-icon_toast"></i>
+			<view class="weui-toast__content">登陆成功，正在跳转</view>
+		</view>
+	</view>

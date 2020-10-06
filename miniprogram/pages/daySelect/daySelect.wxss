@@ -1,0 +1,21 @@
+.imagesize{
+  display:flex;                
+  justify-content: center;
+}
+
+.imagesize image{
+  width:280rpx;
+  height:260rpx;
+  border-radius:10rpx;
+}
+
+.name{
+  margin-top: 20rpx;
+  text-align: center;
+  font-size: 45rpx; 
+  font-weight: 600;
+  color: #CD661D;
+}
+
+
+

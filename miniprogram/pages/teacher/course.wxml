@@ -1,0 +1,99 @@
+<!--miniprogram/pages/course/course.wxml-->
+<view class="nav_section_title">
+	<view class="title_background">TODAY'S  LESSON</view>
+</view>
+
+<view wx:if="{{ todayEmpty === 1 }}">
+	<view class="nav_section">
+		<block wx:for="{{courseList}}" wx:key="key">
+			<view wx:if="{{item.type === 1}}" class="nav_section_items">
+				<!--content-->
+
+
+
+				<view class="section_cont">
+					<view class="section_cont_sub">
+						<text>date：</text>
+						<text class="section_cont_price">{{item.dateInfo.year}} / {{item.dateInfo.month}} / {{item.dateInfo.day}}</text>
+					</view>
+					<view class="section_cont_sub">
+						<text>time：</text>
+						<text class="section_cont_price">{{item.time}}</text>
+					</view>
+				
+					<view>booker : {{item.bookBy}}</view>
+				</view>
+
+
+			</view>
+		</block>
+	</view>
+</view>
+<view wx:elif="{{todayEmpty === 0}}" class="noclass">
+	You don't have class today.
+</view>
+
+<text class="ar_line"> </text>
+
+<view class="nav_section_title">
+	<view class="title_background">REQUIRE MEETING NUMBER</view>
+</view>
+<view wx:if="{{ inTwoDayEmpty === 1}}">
+	<view class="nav_section">
+		<block wx:for="{{courseList}}" wx:key="key">
+			<view wx:if="{{item.Mtype === 1}}" class="nav_section_items">
+				<!--content-->
+				<view class="section_cont">
+					<view class="section_cont_sub">
+						<text>date：</text>
+						<text class="section_cont_price">{{item.dateInfo.year}} / {{item.dateInfo.month}} / {{item.dateInfo.day}}</text>
+					</view>
+					<view class="section_cont_sub">
+						<text>time：</text>
+						<text class="section_cont_price">{{item.time}}</text>
+					</view>
+				
+					<view>booker : {{item.bookBy}}</view>
+				</view>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;line-height:45rpx;padding-top:25rpx" data-Info="{{item.Info}}" data-Id="{{item.Id}}" bindtap="upload">Upload meeting number</a>
+			</view>
+		</block>
+	</view>
+</view>
+<view wx:elif="{{inTwoDayEmpty === 0}}" class="noclass">
+	You have no courses here.
+</view>
+
+<view class="nav_section_title">
+	<view class="title_background">NEED COMMENT</view>
+</view>
+<view wx:if="{{ otherTimeEmpty === 1}}">
+	<view class="nav_section">
+		<block wx:for="{{courseList}}" wx:key="key">
+			<view wx:if="{{item.Ctype === 1}}" class="nav_section_items">
+				<!--content-->
+				<view class="section_cont">
+					<view class="section_cont_sub">
+						<text>date：</text>
+						<text class="section_cont_price">{{item.dateInfo.year}} / {{item.dateInfo.month}} / {{item.dateInfo.day}}</text>
+					</view>
+					<view class="section_cont_sub">
+						<text>time：</text>
+						<text class="section_cont_price">{{item.time}}</text>
+					</view>
+				
+					<view>booker : {{item.bookBy}}</view>
+				</view>
+
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;padding-top:40rpx" bindtap="comment" data-Info="{{item.Info}}" data-Id="{{item.Id}}">write comment</a>
+			</view>
+		</block>
+	</view>
+</view>
+<view wx:elif="{{otherTimeEmpty === 0}}" class="noclass">
+	You have no courses here.
+</view>
+
+<modal hidden="{{hiddenmodalput}}" title="Meeting Num" confirm-text="upload" cancel-text="close" bindcancel="cancel" bindconfirm="confirm"> 
+ <input type='text' bindinput="input" value="{{meetingNum}}" placeholder="000-000-000" auto-focus/>
+ </modal>

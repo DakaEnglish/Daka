@@ -1,0 +1,16 @@
+<!--miniprogram/pages/master/master.wxml-->
+<view class="max-border">
+	<block wx:for="{{studentList}}" wx:key="key">
+		<!--content-->
+		<view class="box">
+			<view >
+				<view>学员 ： {{item.nickName}}</view>
+			</view>
+			<view>
+        <view>手机号 ： {{item.num}}</view>
+        <view>剩余课程 ：{{item.courseTimes}}</view>
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="setValue" data-num="{{index}}">修改课程套餐</a>
+			</view>
+    </view>
+	</block>
+</view>

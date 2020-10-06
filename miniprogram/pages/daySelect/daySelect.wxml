@@ -1,0 +1,15 @@
+<view class="imagesize">
+  <image src="{{image}}"  ></image>
+</view>
+<view class="name">{{name}}</view>
+
+<view wx:for="{{freedayTable}}">
+  <view class="box">
+    <button bindtap="gotoTimeSelect" data-num="{{index}}">
+      <block>{{item.week}}</block>
+      <view wx:if="{{item.lable==0}}">已过期</view>
+      <view wx:if="{{item.isfree==0}}">已满</view>
+    </button>
+  </view>
+</view>
+

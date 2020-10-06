@@ -1,0 +1,27 @@
+<!--miniprogram/pages/master/changeCourse.wxml-->
+<view class="section_cont">
+	<view class="section_cont_sub">
+		<view>学员：</view>
+	</view>
+	<view class="section_cont_price">
+		<view>{{nickname}}</view>
+    <view>电话：</view>
+		<view>{{telephone}}</view>
+	</view>
+	<view>
+    <view>当前课程次数：</view>
+		<view>{{courseTimes}}</view>
+    <view class="weui-cell__bd">
+					<input class="weui-input" placeholder="填写要增加的课程次数" bindinput='getNum' type="number" />
+		</view>
+		<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;" bindtap="setValue">修改课程套餐</a>
+	</view>
+</view>
+
+<view class="fadeIn {{hideToast ? 'fadeOut' : ''}}" wx:if="{{toast}}">
+		<view class="weui-mask_transparent"></view>
+		<view class="weui-toast">
+			<i class="weui-icon-success-no-circle weui-icon_toast"></i>
+			<view class="weui-toast__content">登陆成功，正在跳转</view>
+		</view>
+	</view>

@@ -1,0 +1,143 @@
+<!--miniprogram/pages/course/course.wxml-->
+<view class="nav_section_title">
+	<view class="title_background">今 日 课 程 </view>
+</view>
+
+<view wx:if="{{ todayEmpty === 1 }}">
+	<view class="nav_section">
+		<block wx:for="{{courseList}}" wx:key="key">
+			<view wx:if="{{item.type === 1}}" class="nav_section_items">
+					<!--image-->
+					<view class="section_image">
+						<image src="{{item.teacherimage}}"></image>
+					</view>
+					<!--content-->
+					<view class="section_cont">
+						<view class="section_cont_sub">教师：</view>
+						<view class="section_cont_price">{{item.teachername}}</view>
+						<view>
+							<text>{{item.dateInfo.year}}/{{item.dateInfo.month}}/{{item.dateInfo.day}}</text>
+						</view>
+						<view>{{item.week}}</view>
+						<view>{{item.time}}</view>
+					</view>
+					<!--content end-->
+					<view wx:if="{{item.numFlag}}">
+					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">会 议 号</a>
+					</view>
+			</view>
+			<!--这个button需要布局-->
+				
+		</block>
+	</view>
+</view>
+<view wx:elif="{{todayEmpty === 0}}" class="noclass">
+	您今日没有课程
+</view>
+
+<text class="ar_line"> </text>
+<view class="nav_section_title">
+	<view class="title_background">预 约 课 程</view>
+</view>
+<view wx:if="{{ bookTimeEmpty === 1}}">
+	<view class="nav_section">
+		<block wx:for="{{courseList}}" wx:key="key">
+			<view wx:if="{{item.type === 2}}" class="nav_section_items">
+				<!--image-->
+				<view class="section_image">
+					<image src="{{item.teacherimage}}"></image>
+				</view>
+				<!--content-->
+				<view class="section_cont">
+					<view class="section_cont_sub">
+						<text>教师：</text>
+						<text class="section_cont_price">{{item.teachername}}</text>
+					</view>
+
+					<view>
+						<block>{{item.dateInfo.year}} / </block>
+						<block>{{item.dateInfo.month}} / </block>
+						<block>{{item.dateInfo.day}}</block>
+					</view>
+					<view>{{item.week}}</view>
+					<view>{{item.time}}</view>
+				</view>
+			</view>
+			<!--这个button需要布局-->
+				<view wx:if="{{item.numFlag}}">
+					<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="MeetingNum" data-Id="{{item.Id}}">查看会议号</a>
+				</view>
+				<view wx:if="{{item.dropType}}">
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rp;padding-left:12rpxx;margin:0rpx" bindtap="dropClass" data-Id="{{item.Id}}" data-teacher="{{item.teachername}}" data-time="{{item.time}}" data-teacherid="{{item.teacherid}}">退课</a>
+			</view>
+		</block>
+	</view>
+</view>
+<view wx:elif="{{bookTimeEmpty === 0}}" class="noclass">
+	您没有课程
+</view>
+
+<view class="nav_section_title"> 
+	<view class="title_background">历 史 课 程 </view>
+</view>
+
+<view wx:if="{{ passTimeEmpty === 1 }}">
+	<view class="nav_section">
+		<block wx:for="{{courseList}}" wx:key="key">
+			<view wx:if="{{item.type === 0}}" class="nav_section_items">
+				<!--image-->
+				<view class="section_image">
+					<image src="{{item.teacherimage}}"></image>
+				</view>
+				<!--content-->
+				<view class="section_cont">
+					<view class="section_cont_sub">
+						<view>教师：</view>
+					</view>
+					<view class="section_cont_price">
+						<view>{{item.teachername}}</view>
+					</view>
+					<view>
+						<block>{{item.dateInfo.year}}/</block>
+						<block>{{item.dateInfo.month}}/</block>
+						<block>{{item.dateInfo.day}}</block>
+					</view>
+					<view>{{item.week}}</view>
+					<view>{{item.time}}</view>
+				</view>
+				<!--这个button需要布局-->
+				<!--teacherComment函数还没写，不知道哪种方式显示评论更好-->
+				<view wx:if="{{item.commentType}}">
+				<a class="weui-btn weui-btn_primary" style="background-color:#FFC125;width:30rpx;padding-left:12rpx;margin:0rpx" bindtap="teacherComment" data-Id="{{item.Id}}" data-teacher="{{item.teachername}}">教师评语</a>
+			</view>
+		</view>
+		</block>
+	</view>
+</view>
+<view wx:elif="{{passTimeEmpty === 0}}" class="noclass">
+	您还没上过课程
+</view>
+
+<!--弹窗显示会议号-->>
+<view class="fadeIn" wx:if="{{showOneButtonDialog}}">
+	<view class="weui-mask"></view>
+	<view class="weui-dialog">
+		<view class="weui-dialog__bd">{{meetingNum}}</view>
+		<view class="weui-dialog__ft">
+			<a class="weui-dialog__btn weui-dialog__btn_primary" bindtap="tapDialogButton">知道了</a>
+		</view>
+	</view>
+</view>
+
+<!--弹窗确认退课-->
+<view class="fadeIn" wx:if="{{dialogShow}}">
+	<view class="weui-mask"></view>
+	<view class="weui-dialog">
+		<view class="weui-dialog__hd"><strong class="weui-dialog__title">确认退课</strong></view>
+		<view class="weui-dialog__bd">您所选的老师为：{{teacher}}<br />时间为：{{time}}</view>
+		<view class="weui-dialog__ft">
+			<a class="weui-dialog__btn weui-dialog__btn_default" bindtap="tapDialogButton">我再想想</a>
+			<a class="weui-dialog__btn weui-dialog__btn_primary" bindtap="confirm">确定</a>
+		</view>
+	</view>
+</view>
